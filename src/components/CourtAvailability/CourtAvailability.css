@@ -209,4 +209,22 @@ body[data-theme='dark'] .ca-hora.bloqueado {
   background: #232a34;
   color: #b3b3b3;
   border-color: #334155;
+}
+
+.ca-hora-tiempo {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.ca-hora-duracion {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.ca-hora-estado {
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
 } 

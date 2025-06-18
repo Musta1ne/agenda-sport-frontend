@@ -20,6 +20,7 @@ export default function BookingForm() {
   const [horasDisponibles, setHorasDisponibles] = useState([]);
   const [precio, setPrecio] = useState('');
   const [nombreCancha, setNombreCancha] = useState('');
+  const [tipoCancha, setTipoCancha] = useState('');
 
   useEffect(() => {
     const fetchCourts = async () => {
@@ -44,9 +45,11 @@ export default function BookingForm() {
       const cancha = courts.find(c => c.id === parseInt(form.id_cancha));
       setPrecio(cancha ? cancha.precio : '');
       setNombreCancha(cancha ? cancha.nombre : '');
+      setTipoCancha(cancha ? cancha.tipo : '');
     } else {
       setPrecio('');
       setNombreCancha('');
+      setTipoCancha('');
     }
   }, [form.id_cancha, courts]);
 
@@ -88,6 +91,24 @@ export default function BookingForm() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  const calcularHoraFin = (horaInicio) => {
+    if (!horaInicio) return '';
+    
+    const hora = parseInt(horaInicio.split(':')[0]);
+    const minutos = parseInt(horaInicio.split(':')[1]);
+    
+    if (tipoCancha === 'Pádel') {
+      // Turno de 1:30h para Pádel
+      const totalMinutos = hora * 60 + minutos + 90;
+      const nuevaHora = Math.floor(totalMinutos / 60);
+      const nuevosMinutos = totalMinutos % 60;
+      return nuevaHora.toString().padStart(2, '0') + ':' + nuevosMinutos.toString().padStart(2, '0');
+    } else {
+      // Turno de 1h para Fútbol 5 y 7
+      return (hora + 1).toString().padStart(2, '0') + ':00';
+    }
+  };
+
   const handleSubmit = async e => {
     e.preventDefault();
     
@@ -103,8 +124,7 @@ export default function BookingForm() {
 
     setLoading(true);
     try {
-      const hora_fin = form.hora_inicio ? 
-        (parseInt(form.hora_inicio.split(':')[0]) + 1).toString().padStart(2, '0') + ':00' : '';
+      const hora_fin = calcularHoraFin(form.hora_inicio);
       
       await createBooking({ 
         ...form, 
@@ -124,6 +144,7 @@ export default function BookingForm() {
       });
       setPrecio('');
       setNombreCancha('');
+      setTipoCancha('');
     } catch (err) {
       console.error('Error creating booking:', err);
       const errorMessage = err.response?.data?.error || 'Error al crear la reserva';
@@ -199,9 +220,15 @@ export default function BookingForm() {
           <span><MdAccessTime style={{ color: 'var(--accent2)', marginRight: 6, verticalAlign: 'middle' }} /> Horario</span>
           <select className={styles.select} name="hora_inicio" value={form.hora_inicio} onChange={handleChange} required disabled={!horasDisponibles.length}>
             <option value="">{horasDisponibles.length ? 'Seleccionar horario' : 'Selecciona fecha y cancha primero'}</option>
-            {horasDisponibles.map(h => (
-              <option key={h} value={h}>{h} - {parseInt(h.split(':')[0]) + 1}:00</option>
-            ))}
+            {horasDisponibles.map(h => {
+              const horaFin = calcularHoraFin(h);
+              const duracion = tipoCancha === 'Pádel' ? '1:30h' : '1h';
+              return (
+                <option key={h} value={h}>
+                  {h} - {horaFin} ({duracion})
+                </option>
+              );
+            })}
           </select>
         </label>
         <label className={styles.label}>
