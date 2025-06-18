@@ -13,14 +13,28 @@ const canchaIcons = {
 export default function CourtList() {
   const [courts, setCourts] = useState([]);
   const [selectedCourt, setSelectedCourt] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    getCourts().then(res => setCourts(res.data));
+    getCourts()
+      .then(res => {
+        if (Array.isArray(res.data)) {
+          setCourts(res.data);
+        } else {
+          setCourts([]);
+          setError('No se pudieron cargar las canchas.');
+        }
+      })
+      .catch(() => {
+        setCourts([]);
+        setError('No se pudieron cargar las canchas.');
+      });
   }, []);
 
   return (
     <div className="court-list-grid">
-      {courts.map(court => (
+      {error && <div className="court-error">{error}</div>}
+      {(Array.isArray(courts) ? courts : []).map(court => (
         <div className="court-card" key={court._id}>
           <div className="court-img-wrap">
             <img className="court-img" src={court.imagen} alt={court.tipo} />
