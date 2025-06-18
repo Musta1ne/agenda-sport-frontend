@@ -1,0 +1,212 @@
+.court-availability {
+  background: #f8f9fa;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 8px;
+  position: relative;
+}
+.court-availability .close-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.2rem 0.7rem;
+  cursor: pointer;
+}
+.court-availability .close-btn:hover {
+  background: #a71d2a;
+}
+.court-availability ul {
+  margin: 0.5rem 0 1rem 1rem;
+}
+.horas-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.hora {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: bold;
+  min-width: 90px;
+  text-align: center;
+}
+.hora.disponible {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #b7e4c7;
+}
+.hora.reservado {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+.hora.bloqueado {
+  background: #e2e3e5;
+  color: #383d41;
+  border: 1px solid #d6d8db;
+}
+
+/* Overlay del modal */
+.ca-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(24,28,36,0.65);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* Modal principal */
+.ca-modal {
+  background: #fff;
+  color: #181c24;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px #b3cfff44;
+  padding: 2.5rem 2.2rem 2rem 2.2rem;
+  min-width: 340px;
+  max-width: 95vw;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+.ca-close-btn {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.1rem;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px #60a5fa22;
+  transition: background 0.2s;
+}
+.ca-close-btn:hover {
+  background: #60a5fa;
+  color: #fff;
+}
+.ca-title {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #2563eb;
+  margin-bottom: 1.2rem;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ca-title-icon {
+  color: #2563eb;
+}
+.ca-label {
+  font-weight: 600;
+  color: #181c24;
+  font-size: 1.08rem;
+  margin-bottom: 0.7rem;
+  display: block;
+}
+.ca-date-input {
+  background: #f4f8ff;
+  color: #181c24;
+  border: 1.5px solid #b3cfff;
+  border-radius: 7px;
+  padding: 0.5rem 0.8rem;
+  font-size: 1.08rem;
+  margin-left: 0.7rem;
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+.ca-horas-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1.2rem;
+}
+.ca-hora {
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-weight: bold;
+  min-width: 110px;
+  text-align: center;
+  font-size: 1.08rem;
+  border: 1.5px solid #b3cfff;
+  background: #eaf2ff;
+  color: #2563eb;
+  transition: background 0.2s, color 0.2s;
+}
+.ca-hora.disponible {
+  background: #eaf2ff;
+  color: #2563eb;
+  border-color: #60a5fa;
+}
+.ca-hora.reservado {
+  background: #f8d7da;
+  color: #721c24;
+  border-color: #f5c6cb;
+}
+.ca-hora.bloqueado {
+  background: #e2e3e5;
+  color: #383d41;
+  border-color: #d6d8db;
+}
+
+/* Modo oscuro */
+body[data-theme='dark'] .ca-modal {
+  background: #181c24;
+  color: #fff;
+  box-shadow: 0 8px 32px #10192b99;
+}
+body[data-theme='dark'] .ca-close-btn {
+  background: #60a5fa;
+  color: #181c24;
+}
+body[data-theme='dark'] .ca-close-btn:hover {
+  background: #2563eb;
+  color: #fff;
+}
+body[data-theme='dark'] .ca-title {
+  color: #60a5fa;
+}
+body[data-theme='dark'] .ca-title-icon {
+  color: #60a5fa;
+}
+body[data-theme='dark'] .ca-label {
+  color: #fff;
+}
+body[data-theme='dark'] .ca-date-input {
+  background: #232a34;
+  color: #fff;
+  border: 1.5px solid #334155;
+}
+body[data-theme='dark'] .ca-hora {
+  background: #232a34;
+  color: #60a5fa;
+  border-color: #334155;
+}
+body[data-theme='dark'] .ca-hora.disponible {
+  background: #232a34;
+  color: #60a5fa;
+  border-color: #60a5fa;
+}
+body[data-theme='dark'] .ca-hora.reservado {
+  background: #3a2323;
+  color: #ffb3b3;
+  border-color: #f5c6cb;
+}
+body[data-theme='dark'] .ca-hora.bloqueado {
+  background: #232a34;
+  color: #b3b3b3;
+  border-color: #334155;
+} 

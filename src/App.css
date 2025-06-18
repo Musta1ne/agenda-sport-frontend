@@ -1,0 +1,105 @@
+body {
+  font-family: 'Montserrat', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar a {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navbar a:hover {
+  filter: brightness(1.2);
+}
+
+main {
+  border-radius: 18px;
+  padding: 2.5rem 2rem 2rem 2rem;
+  min-height: 70vh;
+  backdrop-filter: blur(2px);
+}
+
+h1, h2, h3 {
+  font-weight: 800;
+  letter-spacing: 1px;
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+
+section.home {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+section.home p {
+  font-size: 1.2rem;
+}
+
+.booking-form, .court-list, .booking-list {
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 2rem;
+  animation: fadeIn 0.7s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.booking-form button, .court-list button, .cancel-btn {
+  border-radius: 6px;
+  padding: 0.5rem 1.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.1s;
+}
+
+.booking-form button:hover, .court-list button:hover, .cancel-btn:hover {
+  transform: scale(1.05);
+}
+
+.booking-form input, .booking-form select {
+  border-radius: 5px;
+  padding: 0.4rem 0.7rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.7rem;
+  font-size: 1rem;
+  transition: border 0.2s;
+}
+
+.booking-form input:focus, .booking-form select:focus {
+  outline: none;
+}
+
+.booking-form label {
+  font-weight: 500;
+}
+
+.booking-list .msg, .booking-form .msg {
+  margin-top: 1rem;
+  padding: 0.7rem;
+  border-radius: 6px;
+  font-weight: 600;
+  text-align: center;
+  animation: fadeIn 0.7s;
+}
+
+.booking-list .msg {
+  margin-bottom: 1rem;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+}

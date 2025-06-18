@@ -1,0 +1,147 @@
+.formCard {
+  display: flex;
+  flex-direction: row;
+  background: var(--card-bg);
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+  max-width: 900px;
+  margin: 2.5rem auto 2rem auto;
+  overflow: hidden;
+  min-height: 420px;
+}
+@media (max-width: 900px) {
+  .formCard {
+    flex-direction: column;
+    min-height: unset;
+  }
+}
+.formWrap {
+  flex: 1;
+  padding: 2.5rem 2.5rem 2rem 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 2.5rem;
+  justify-content: space-between;
+  align-items: flex-start;
+  background: var(--card-bg);
+}
+@media (max-width: 900px) {
+  .formWrap {
+    padding: 1.5rem 1rem 1rem 1rem;
+  }
+}
+.title {
+  width: 100%;
+  text-align: left;
+  color: var(--accent2);
+  font-size: 2.1rem;
+  font-weight: 900;
+  margin-bottom: 1.2rem;
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+.price {
+  width: 100%;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--accent2);
+  background: var(--input-bg);
+  border-radius: 8px;
+  padding: 0.7rem 1.2rem;
+  margin-bottom: 1.2rem;
+  text-align: left;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 8px #2196f322;
+}
+.label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  color: var(--text);
+  font-size: 1.08rem;
+  width: 47%;
+  margin-bottom: 0.5rem;
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+.input, .select {
+  background: var(--input-bg);
+  color: var(--text);
+  border: 1.5px solid var(--input-border);
+  border-radius: 7px;
+  padding: 0.5rem 0.8rem;
+  margin-top: 0.3rem;
+  font-size: 1.08rem;
+  margin-bottom: 0.7rem;
+  transition: border 0.2s;
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+.input:focus, .select:focus {
+  border: 2px solid var(--accent2);
+  outline: none;
+}
+.button {
+  width: 100%;
+  background: var(--button);
+  color: var(--button-text);
+  border: none;
+  border-radius: 8px;
+  padding: 1rem 0;
+  font-weight: 800;
+  font-size: 1.25rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px #2196f322;
+  margin-top: 1.2rem;
+  transition: background 0.2s, color 0.2s, transform 0.1s;
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+.button:hover {
+  background: var(--button-hover);
+  color: var(--button-text);
+  transform: scale(1.04);
+}
+.transferInfo {
+  width: 100%;
+  background: var(--input-bg);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 1.1rem 1.2rem;
+  margin-bottom: 1.2rem;
+  font-size: 1.08rem;
+  box-shadow: 0 2px 8px #2196f322;
+  border: 1.5px solid var(--input-border);
+  line-height: 1.7;
+}
+.formTitle {
+  width: 100%;
+  text-align: center;
+  color: #2196f3;
+  font-size: 2.2rem;
+  font-weight: 900;
+  margin-bottom: 2.2rem;
+  letter-spacing: 1px;
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+body.dark .formTitle {
+  color: #60a5fa;
+}
+:root {
+  --card-bg: #fff;
+  --text: #181c24;
+  --accent2: #2196f3;
+  --input-bg: #f0f4f8;
+  --input-border: #b0bec5;
+  --button: #2196f3;
+  --button-text: #fff;
+  --button-hover: #00e676;
+  --shadow: 0 4px 24px rgba(33,150,243,0.10);
+}
+body.dark, :root.dark {
+  --card-bg: #232a34;
+  --text: #f6f8fa;
+  --accent2: #00e676;
+  --input-bg: #232a34;
+  --input-border: #374151;
+  --button: #00e676;
+  --button-text: #181c24;
+  --button-hover: #2196f3;
+  --shadow: 0 4px 24px rgba(0,0,0,0.18);
+} 
