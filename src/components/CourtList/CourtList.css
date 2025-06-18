@@ -135,3 +135,112 @@ body[data-theme='dark'] .court-info svg {
 .close-btn:hover {
   background: #b71c1c;
 }
+
+@media (max-width: 1024px) {
+  .court-list-grid {
+    gap: 1.2rem;
+  }
+  .court-card {
+    width: 90vw;
+    max-width: 340px;
+  }
+}
+
+@media (max-width: 768px) {
+  .court-list-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+  }
+  .court-card {
+    width: 96vw;
+    max-width: 370px;
+    min-height: 260px;
+  }
+  .court-img-wrap {
+    height: 120px;
+  }
+  .court-info {
+    padding: 0.8rem 0.7rem 1rem 0.7rem;
+  }
+  .court-btn {
+    font-size: 1rem;
+    padding: 0.5rem 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .court-list-grid {
+    gap: 0.7rem;
+    margin-top: 0.7rem;
+  }
+  .court-card {
+    width: 99vw;
+    max-width: 99vw;
+    min-height: 180px;
+    border-radius: 10px;
+  }
+  .court-img-wrap {
+    height: 80px;
+  }
+  .court-info {
+    padding: 0.5rem 0.3rem 0.7rem 0.3rem;
+  }
+  .court-type, .court-name {
+    font-size: 1rem;
+  }
+  .court-btn {
+    font-size: 0.95rem;
+    padding: 0.4rem 0.7rem;
+    border-radius: 6px;
+  }
+}
+
+.loading-message,
+.court-error,
+.no-courts-message {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 2rem;
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 1rem 0;
+}
+
+.loading-message {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+.court-error {
+  color: #e74c3c;
+  border: 1px solid #e74c3c;
+}
+
+.retry-btn {
+  background: var(--accent2);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 1rem;
+  font-weight: 500;
+}
+
+.retry-btn:hover {
+  background: var(--accent2-hover);
+}
+
+.no-courts-message {
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.court-price {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--accent2);
+  margin: 0.5rem 0;
+}

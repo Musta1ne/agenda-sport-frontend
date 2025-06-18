@@ -1,23 +1,44 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'https://reservas-backend-tau.vercel.app/api';
+const API_URL = import.meta.env.VITE_API_URL || 'https://reservas-backend-bkg0.onrender.com/api';
 console.log('API_URL:', API_URL);
 
+// Configurar axios con timeout y manejo de errores
+const api = axios.create({
+  baseURL: API_URL,
+  timeout: 10000,
+  headers: {
+    'Content-Type': 'application/json',
+  }
+});
+
+// Interceptor para manejar errores
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    console.error('API Error:', error);
+    if (error.response) {
+      console.error('Error response:', error.response.data);
+    }
+    return Promise.reject(error);
+  }
+);
+
 // Canchas
-export const getCourts = () => axios.get(`${API_URL}/courts`);
-export const getCourtAvailability = (id) => axios.get(`${API_URL}/courts/${id}/availability`);
-export const getCourtBookings = (id) => axios.get(`${API_URL}/courts/${id}/bookings`);
-export const getCourtBlocks = (id) => axios.get(`${API_URL}/courts/${id}/blocks`);
+export const getCourts = () => api.get('/courts');
+export const getCourtAvailability = (id) => api.get(`/courts/${id}/availability`);
+export const getCourtBookings = (id) => api.get(`/courts/${id}/bookings`);
+export const getCourtBlocks = (id) => api.get(`/courts/${id}/blocks`);
 
 // Reservas
-export const createBooking = (data) => axios.post(`${API_URL}/bookings`, data);
-export const getBooking = (id) => axios.get(`${API_URL}/bookings/${id}`);
-export const updateBooking = (id, data) => axios.put(`${API_URL}/bookings/${id}`, data);
-export const deleteBooking = (id) => axios.delete(`${API_URL}/bookings/${id}`);
-export const getAllBookings = () => axios.get(`${API_URL}/bookings`);
+export const createBooking = (data) => api.post('/bookings', data);
+export const getBooking = (id) => api.get(`/bookings/${id}`);
+export const updateBooking = (id, data) => api.put(`/bookings/${id}`, data);
+export const deleteBooking = (id) => api.delete(`/bookings/${id}`);
+export const getAllBookings = () => api.get('/bookings');
 
 // Deportes
-export const getSports = () => axios.get(`${API_URL}/sports`);
+export const getSports = () => api.get('/sports');
 
 // Bloqueos
-export const createBlock = (data) => axios.post(`${API_URL}/blocks`, data); 
+export const createBlock = (data) => api.post('/blocks', data); 

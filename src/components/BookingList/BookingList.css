@@ -97,4 +97,170 @@ body[data-theme='dark'] .cancel-btn {
 body[data-theme='dark'] .cancel-btn:hover {
   background: #b71c1c;
   color: #fff;
+}
+
+.booking-cancel-info {
+  margin-top: 2rem;
+  background: #e3f0ff;
+  color: #181c24;
+  border-left: 6px solid #2196f3;
+  border-radius: 10px;
+  padding: 1.2rem 1.5rem;
+  font-size: 1.08rem;
+  box-shadow: 0 2px 8px #b3cfff22;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.booking-cancel-info a {
+  color: #2563eb;
+  font-weight: 700;
+  text-decoration: underline;
+}
+body[data-theme='dark'] .booking-cancel-info {
+  background: #232a34;
+  color: #f6f8fa;
+  border-left: 6px solid #60a5fa;
+  box-shadow: 0 2px 8px #10192b99;
+}
+@media (max-width: 600px) {
+  .booking-cancel-info {
+    font-size: 0.98rem;
+    padding: 0.7rem 0.5rem;
+  }
+}
+
+.loading-message,
+.error-message,
+.no-bookings-message {
+  text-align: center;
+  padding: 2rem;
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 1rem 0;
+}
+
+.loading-message {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+.error-message {
+  color: #e74c3c;
+  border: 1px solid #e74c3c;
+}
+
+.retry-btn {
+  background: var(--accent2);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 1rem;
+  font-weight: 500;
+}
+
+.retry-btn:hover {
+  background: var(--accent2-hover);
+}
+
+.no-bookings-message {
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.bookings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.booking-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-color);
+}
+
+.booking-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.booking-header h3 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 1.2rem;
+}
+
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-confirmed {
+  background: #27ae60;
+  color: white;
+}
+
+.status-active {
+  background: #3498db;
+  color: white;
+}
+
+.status-cancelled {
+  background: #e74c3c;
+  color: white;
+}
+
+.status-pending {
+  background: #f39c12;
+  color: white;
+}
+
+.status-default {
+  background: #95a5a6;
+  color: white;
+}
+
+.booking-details {
+  margin-bottom: 1rem;
+}
+
+.booking-info {
+  margin: 0.5rem 0;
+  color: var(--text-secondary);
+}
+
+.booking-info strong {
+  color: var(--text-primary);
+  margin-right: 0.5rem;
+}
+
+.cancel-btn {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.cancel-btn:hover {
+  background: #c0392b;
 } 

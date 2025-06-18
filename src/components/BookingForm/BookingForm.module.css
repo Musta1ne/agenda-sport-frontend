@@ -144,4 +144,10 @@ body.dark, :root.dark {
   --button-text: #181c24;
   --button-hover: #2196f3;
   --shadow: 0 4px 24px rgba(0,0,0,0.18);
+}
+.loadingMessage {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
 } 

@@ -103,4 +103,183 @@ body[data-theme='dark'] .theme-circle {
 body[data-theme='dark'] .theme-circle:hover {
   background: #2563eb;
   color: #fff;
+}
+
+/* Responsive: Navbar para pantallas pequeñas */
+@media (max-width: 768px) {
+  .navbar-content {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 1rem;
+    gap: 0.5rem;
+  }
+  .navbar-links {
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
+  }
+  .pill-btn {
+    font-size: 1rem;
+    padding: 0.45rem 1rem;
+    min-width: 110px;
+  }
+  .theme-circle {
+    margin-left: 0;
+    margin-top: 0.5rem;
+    width: 38px;
+    height: 38px;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-wrapper {
+    min-height: 54px;
+    padding: 0.3rem 0;
+  }
+  .navbar-content {
+    padding: 0 0.3rem;
+    gap: 0.2rem;
+  }
+  .pill-btn {
+    font-size: 0.95rem;
+    padding: 0.35rem 0.7rem;
+    min-width: 90px;
+  }
+  .theme-circle {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+}
+
+/* Hamburguesa solo visible en móvil */
+.navbar-hamburger {
+  display: none;
+  background: #e3f0ff;
+  border: 2px solid #b3cfff;
+  color: #2563eb;
+  margin-right: 1rem;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  box-shadow: 0 2px 8px #b3cfff33;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+}
+.navbar-hamburger:hover {
+  background: #60a5fa;
+  color: #fff;
+  border-color: #2563eb;
+}
+
+@media (max-width: 768px) {
+  .navbar-hamburger {
+    display: flex;
+    position: relative;
+    z-index: 1201;
+  }
+  .navbar-links {
+    display: none;
+  }
+}
+
+body[data-theme='dark'] .navbar-hamburger {
+  background: #232a34;
+  color: #60a5fa;
+  border: 2px solid #334155;
+  box-shadow: 0 2px 8px #10192b99;
+}
+body[data-theme='dark'] .navbar-hamburger:hover {
+  background: #2563eb;
+  color: #fff;
+  border-color: #60a5fa;
+}
+
+/* Menú lateral/modal para móvil */
+.navbar-mobile-menu-bg {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(24,28,36,0.85);
+  z-index: 1200;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  animation: fadeIn 0.2s;
+}
+.navbar-mobile-menu {
+  background: #fff;
+  border-radius: 0 0 0 18px;
+  box-shadow: -2px 0 16px #b3cfff44;
+  padding: 2.2rem 1.5rem 1.5rem 1.5rem;
+  min-width: 220px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  position: relative;
+  gap: 1.2rem;
+}
+.navbar-mobile-close {
+  background: none;
+  border: none;
+  color: #222;
+  position: absolute;
+  top: 1.1rem;
+  right: 1.1rem;
+  font-size: 1.7rem;
+  cursor: pointer;
+}
+.mobile-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f3f6fa;
+  color: #2563eb;
+  font-weight: 700;
+  font-size: 1.08rem;
+  text-decoration: none;
+  padding: 0.9rem 1.2rem;
+  border-radius: 14px;
+  border: 1.5px solid #b3cfff;
+  margin-bottom: 0.5rem;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+  justify-content: flex-start;
+}
+.mobile-btn.active, .mobile-btn:hover {
+  background: #60a5fa;
+  color: #fff;
+  border-color: #2563eb;
+}
+.theme-circle.mobile-theme {
+  margin: 1.5rem auto 0 auto;
+  display: flex;
+}
+
+body[data-theme='dark'] .navbar-mobile-menu {
+  background: #181c24;
+  box-shadow: -2px 0 16px #10192b99;
+}
+body[data-theme='dark'] .mobile-btn {
+  background: #232a34;
+  color: #60a5fa;
+  border-color: #334155;
+}
+body[data-theme='dark'] .mobile-btn.active, body[data-theme='dark'] .mobile-btn:hover {
+  background: #2563eb;
+  color: #fff;
+  border-color: #60a5fa;
+}
+
+/* Mejor contraste de contenedores en modo claro y oscuro */
+.court-card, .booking-form, .booking-list-card, .court-modal, .court-availability-modal {
+  background: #fff;
+  box-shadow: 0 4px 24px #b3cfff22;
+}
+body[data-theme='dark'] .court-card, body[data-theme='dark'] .booking-form, body[data-theme='dark'] .booking-list-card, body[data-theme='dark'] .court-modal, body[data-theme='dark'] .court-availability-modal {
+  background: #232a34;
+  box-shadow: 0 4px 24px #10192b99;
 } 
