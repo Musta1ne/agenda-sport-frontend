@@ -7,16 +7,29 @@ import './Courts.css';
 export default function Courts() {
   const [courts, setCourts] = useState([]);
   const [selectedCourt, setSelectedCourt] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    getCourts().then(res => setCourts(res.data));
+    getCourts()
+      .then(res => {
+        if (Array.isArray(res.data)) setCourts(res.data);
+        else {
+          setCourts([]);
+          setError('No se pudieron cargar las canchas.');
+        }
+      })
+      .catch(() => {
+        setCourts([]);
+        setError('No se pudieron cargar las canchas.');
+      });
   }, []);
 
   return (
     <>
       <h1 className="courts-title">Nuestras Canchas</h1>
       <div className="courts-wrap">
-        {courts.map(court => {
+        {error && <div className="court-error">{error}</div>}
+        {(Array.isArray(courts) ? courts : []).map(court => {
           const tipo = court.tipo ? court.tipo.toLowerCase() : 'fútbol 5';
           return (
             <div className="cancha-card" key={court._id}>
