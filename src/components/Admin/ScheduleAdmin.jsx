@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getSchedules, createSchedule, updateSchedule, deleteSchedule, getCourts } from '../../services/api';
 
-const dias = [
-  'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'
-];
 
 const initialForm = { id_cancha: '', dia_semana: 'Lunes', hora_inicio: '12:00', hora_fin: '13:00', activo: 1 };
 
@@ -88,9 +85,6 @@ const ScheduleAdmin = () => {
           <option value="">Selecciona cancha</option>
           {courts.map(c => <option key={c.id} value={c.id}>{c.nombre}</option>)}
         </select>
-        <select name="dia_semana" value={form.dia_semana} onChange={handleChange} required>
-          {dias.map(d => <option key={d} value={d}>{d}</option>)}
-        </select>
         <select name="hora_inicio" value={form.hora_inicio} onChange={handleChange} required>
           {horas.map(h => <option key={h} value={h}>{h}</option>)}
         </select>
@@ -104,7 +98,7 @@ const ScheduleAdmin = () => {
         <table border="1" cellPadding="5">
           <thead>
             <tr>
-              <th>ID</th><th>Cancha</th><th>Día</th><th>Inicio</th><th>Fin</th><th>Activo</th><th>Acciones</th>
+              <th>ID</th><th>Cancha</th><th>Inicio</th><th>Fin</th><th>Activo</th><th>Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -112,7 +106,6 @@ const ScheduleAdmin = () => {
               <tr key={s.id}>
                 <td>{s.id}</td>
                 <td>{courts.find(c=>c.id===s.id_cancha)?.nombre || s.id_cancha}</td>
-                <td>{s.dia_semana}</td>
                 <td>{s.hora_inicio}</td>
                 <td>{s.hora_fin}</td>
                 <td>{s.activo ? 'Sí' : 'No'}</td>
