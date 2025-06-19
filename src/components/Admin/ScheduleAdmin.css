@@ -1,3 +1,45 @@
+:root {
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --bg-form: #ffffff;
+  --bg-input: #ffffff;
+  --bg-content: #ffffff;
+  --bg-table-header: #f8fafc;
+  --bg-hover: #f8fafc;
+  --border-color: #e5e7eb;
+  --button-primary: #2563eb;
+  --button-primary-hover: #1d4ed8;
+  --button-secondary: #f3f4f6;
+  --button-secondary-hover: #e5e7eb;
+  --button-danger: #fee2e2;
+  --button-danger-text: #dc2626;
+  --button-edit: #dbeafe;
+  --button-edit-text: #2563eb;
+  --status-active: #15803d;
+  --status-inactive: #dc2626;
+}
+
+body[data-theme='dark'] {
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --bg-form: #1a1e24;
+  --bg-input: #0f172a;
+  --bg-content: #1a1e24;
+  --bg-table-header: #0f172a;
+  --bg-hover: #1e293b;
+  --border-color: #334155;
+  --button-primary: #60a5fa;
+  --button-primary-hover: #3b82f6;
+  --button-secondary: #1e293b;
+  --button-secondary-hover: #334155;
+  --button-danger: #7f1d1d;
+  --button-danger-text: #fca5a5;
+  --button-edit: #1e3a8a;
+  --button-edit-text: #93c5fd;
+  --status-active: #4ade80;
+  --status-inactive: #f87171;
+}
+
 /* Contenedor principal */
 div > h2 {
   font-size: 1.5rem;
@@ -10,8 +52,8 @@ div > h2 {
 
 /* Mensaje de error */
 div > div[style*="color:red"] {
-  background: #fee2e2;
-  color: #dc2626;
+  background: var(--button-danger);
+  color: var(--button-danger-text);
   padding: 1rem;
   border-radius: 8px;
   margin-bottom: 1.5rem;
@@ -20,11 +62,11 @@ div > div[style*="color:red"] {
 
 /* Formulario */
 form[style*="marginBottom:20"] {
-  background: var(--bg-form, #ffffff);
+  background: var(--bg-form);
   border-radius: 10px;
   padding: 1.5rem;
   margin-bottom: 2rem;
-  border: 1px solid var(--border-color, #e5e7eb);
+  border: 1px solid var(--border-color);
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
@@ -33,9 +75,9 @@ form[style*="marginBottom:20"] {
 /* Selects del formulario */
 form select {
   padding: 0.75rem 1rem;
-  border: 1px solid var(--border-color, #e5e7eb);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
-  background: var(--bg-input, #ffffff);
+  background: var(--bg-input);
   color: var(--text-primary);
   font-size: 0.95rem;
   min-width: 150px;
@@ -44,8 +86,8 @@ form select {
 
 form select:focus {
   outline: none;
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  border-color: var(--button-primary);
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
 }
 
 /* Botones del formulario */
@@ -59,12 +101,12 @@ form button {
 }
 
 form button[type="submit"] {
-  background: #2563eb;
-  color: white;
+  background: var(--button-primary);
+  color: #ffffff;
 }
 
 form button[type="submit"]:hover {
-  background: #1d4ed8;
+  background: var(--button-primary-hover);
   transform: translateY(-1px);
 }
 
@@ -74,13 +116,13 @@ form button[type="submit"]:disabled {
 }
 
 form button[type="button"] {
-  background: #f3f4f6;
-  color: #374151;
-  border: 1px solid #e5e7eb;
+  background: var(--button-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
 }
 
 form button[type="button"]:hover {
-  background: #e5e7eb;
+  background: var(--button-secondary-hover);
   transform: translateY(-1px);
 }
 
@@ -88,7 +130,7 @@ form button[type="button"]:hover {
 p:has(+ table) {
   text-align: center;
   padding: 2rem;
-  color: var(--text-secondary, #6b7280);
+  color: var(--text-secondary);
   font-size: 1.1rem;
 }
 
@@ -96,32 +138,33 @@ p:has(+ table) {
 table {
   width: 100%;
   border-collapse: collapse;
-  background: var(--bg-content, #ffffff);
+  background: var(--bg-content);
   border-radius: 10px;
   overflow: hidden;
   font-size: 0.95rem;
+  border: 1px solid var(--border-color);
 }
 
 /* Encabezados de tabla */
 table th {
-  background: var(--bg-table-header, #f8fafc);
+  background: var(--bg-table-header);
   color: var(--text-primary);
   font-weight: 600;
   text-align: left;
   padding: 1rem;
-  border-bottom: 2px solid var(--border-color, #e5e7eb);
+  border-bottom: 2px solid var(--border-color);
 }
 
 /* Celdas de tabla */
 table td {
   padding: 1rem;
-  border-bottom: 1px solid var(--border-color, #e5e7eb);
+  border-bottom: 1px solid var(--border-color);
   color: var(--text-primary);
 }
 
 /* Filas de tabla */
 table tr:hover {
-  background: var(--bg-hover, #f8fafc);
+  background: var(--bg-hover);
 }
 
 /* Columna de estado */
@@ -147,33 +190,33 @@ table td:last-child button {
 
 /* Botón editar */
 table td:last-child button:first-child {
-  background: #dbeafe;
-  color: #2563eb;
+  background: var(--button-edit);
+  color: var(--button-edit-text);
 }
 
 table td:last-child button:first-child:hover {
-  background: #bfdbfe;
+  background: var(--button-edit-hover, var(--button-edit));
   transform: translateY(-1px);
 }
 
 /* Botón eliminar */
 table td:last-child button:last-child {
-  background: #fee2e2;
-  color: #dc2626;
+  background: var(--button-danger);
+  color: var(--button-danger-text);
 }
 
 table td:last-child button:last-child:hover {
-  background: #fecaca;
+  background: var(--button-danger-hover, var(--button-danger));
   transform: translateY(-1px);
 }
 
 /* Estado activo/inactivo */
 table td:nth-child(5):contains('Sí') {
-  color: #15803d;
+  color: var(--status-active);
 }
 
 table td:nth-child(5):contains('No') {
-  color: #dc2626;
+  color: var(--status-inactive);
 }
 
 /* Responsive */
@@ -201,73 +244,5 @@ table td:nth-child(5):contains('No') {
 
   table td:last-child button {
     width: 100%;
-  }
-}
-
-/* Dark mode */
-body[data-theme='dark'] {
-  /* Fondo y bordes */
-  table {
-    background: var(--bg-content-dark, #1e293b);
-  }
-
-  table th {
-    background: var(--bg-table-header-dark, #0f172a);
-    border-bottom-color: var(--border-color-dark, #334155);
-  }
-
-  table td {
-    border-bottom-color: var(--border-color-dark, #334155);
-  }
-
-  /* Formulario */
-  form[style*="marginBottom:20"] {
-    background: var(--bg-form-dark, #1e293b);
-    border-color: var(--border-color-dark, #334155);
-  }
-
-  form select {
-    background: var(--bg-input-dark, #0f172a);
-    border-color: var(--border-color-dark, #334155);
-    color: var(--text-primary-dark, #e2e8f0);
-  }
-
-  /* Botones */
-  form button[type="button"] {
-    background: var(--bg-secondary-dark, #1e293b);
-    color: var(--text-primary-dark, #e2e8f0);
-    border-color: var(--border-color-dark, #334155);
-  }
-
-  form button[type="button"]:hover {
-    background: var(--bg-secondary-hover-dark, #334155);
-  }
-
-  /* Botones de acciones */
-  table td:last-child button:first-child {
-    background: #1e3a8a;
-    color: #93c5fd;
-  }
-
-  table td:last-child button:first-child:hover {
-    background: #1e40af;
-  }
-
-  table td:last-child button:last-child {
-    background: #7f1d1d;
-    color: #fca5a5;
-  }
-
-  table td:last-child button:last-child:hover {
-    background: #991b1b;
-  }
-
-  /* Estados */
-  table td:nth-child(5):contains('Sí') {
-    color: #4ade80;
-  }
-
-  table td:nth-child(5):contains('No') {
-    color: #f87171;
   }
 } 
