@@ -11,7 +11,7 @@ console.log('Environment:', import.meta.env.DEV ? 'development' : 'production');
 // Configurar axios con timeout y manejo de errores
 const api = axios.create({
   baseURL: API_URL,
-  timeout: 10000,
+  timeout: 30000, // 30 segundos
   headers: {
     'Content-Type': 'application/json',
   }
