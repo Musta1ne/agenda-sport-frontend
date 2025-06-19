@@ -147,3 +147,35 @@ body[data-theme='dark'] {
     padding: 0.3rem;
   }
 }
+
+/* Estilos para selects y opciones (modo claro y oscuro) */
+select, input, textarea {
+  background: var(--admin-card, #fff);
+  color: var(--admin-text, #181c24);
+  border: 1.5px solid var(--admin-border, #b0bec5);
+  transition: background 0.2s, color 0.2s;
+}
+
+select:focus, input:focus, textarea:focus {
+  background: var(--admin-bg, #f6f8fa);
+  color: var(--admin-text, #181c24);
+  outline: 2px solid var(--admin-accent, #2196f3);
+}
+
+option {
+  background: var(--admin-card, #fff);
+  color: var(--admin-text, #181c24);
+}
+
+body[data-theme='dark'] select,
+body[data-theme='dark'] input,
+body[data-theme='dark'] textarea {
+  background: var(--admin-card, #232a34);
+  color: var(--admin-text, #f6f8fa);
+  border: 1.5px solid var(--admin-border, #374151);
+}
+
+body[data-theme='dark'] option {
+  background: var(--admin-card, #232a34);
+  color: var(--admin-text, #f6f8fa);
+}
