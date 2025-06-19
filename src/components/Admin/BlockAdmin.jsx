@@ -97,13 +97,13 @@ const BlockAdmin = () => {
             <tbody>
               {blocks.map(block => (
                 <tr key={block.id}>
-                  <td>{block.id}</td>
-                  <td>{courts.find(c=>c.id===block.id_cancha)?.nombre || block.id_cancha}</td>
-                  <td>{block.fecha}</td>
-                  <td>{block.hora_inicio}</td>
-                  <td>{block.hora_fin}</td>
-                  <td>{block.motivo}</td>
-                  <td>
+                  <td data-label="ID">{block.id}</td>
+                  <td data-label="Cancha">{courts.find(c=>c.id===block.id_cancha)?.nombre || block.id_cancha}</td>
+                  <td data-label="Fecha">{block.fecha}</td>
+                  <td data-label="Inicio">{block.hora_inicio}</td>
+                  <td data-label="Fin">{block.hora_fin}</td>
+                  <td data-label="Motivo">{block.motivo}</td>
+                  <td data-label="Acciones">
                     <button className="admin-btn edit" onClick={()=>handleEdit(block)}>Editar</button>
                     <button className="admin-btn delete" onClick={()=>handleDelete(block.id)}>Eliminar</button>
                   </td>

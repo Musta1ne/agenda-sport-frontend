@@ -87,14 +87,26 @@ const CourtAdmin = () => {
             <tbody>
               {courts.map(court => (
                 <tr key={court.id}>
-                  <td>{court.id}</td>
-                  <td>{court.nombre}</td>
-                  <td>{court.tipo}</td>
-                  <td>{court.tipo_superficie}</td>
-                  <td>{court.estado}</td>
-                  <td>{court.precio}</td>
-                  <td>{court.imagen}</td>
-                  <td>
+                  <td data-label="ID">{court.id}</td>
+                  <td data-label="Nombre">{court.nombre}</td>
+                  <td data-label="Tipo">{court.tipo}</td>
+                  <td data-label="Superficie">{court.tipo_superficie}</td>
+                  <td data-label="Estado">{court.estado}</td>
+                  <td data-label="Precio">{court.precio}</td>
+                  <td data-label="Imagen">
+                    {court.imagen ? (
+                      <a
+                        href={court.imagen}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="admin-btn view"
+                        style={{ minWidth: 0, padding: '6px 14px', display: 'inline-block', textAlign: 'center' }}
+                      >
+                        Ver imagen
+                      </a>
+                    ) : '—'}
+                  </td>
+                  <td data-label="Acciones">
                     <button className="admin-btn edit" onClick={()=>handleEdit(court)}>Editar</button>
                     <button className="admin-btn delete" onClick={()=>handleDelete(court.id)}>Eliminar</button>
                   </td>

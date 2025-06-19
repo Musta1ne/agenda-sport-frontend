@@ -75,11 +75,6 @@ body {
   min-height: 340px;
   box-shadow: 0 2px 8px var(--admin-shadow);
 }
-.admin-table-wrapper {
-  width: 100%;
-  overflow-x: auto;
-  margin-bottom: 32px;
-}
 .admin-table {
   width: 100%;
   border-collapse: separate;
@@ -88,7 +83,6 @@ body {
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 8px var(--admin-shadow);
-  min-width: 700px;
 }
 .admin-table th, .admin-table td {
   padding: 13px 18px;
@@ -146,6 +140,25 @@ body {
   background: #ff8a80;
   color: #fff;
 }
+.admin-btn.view {
+  background: var(--admin-accent2);
+  color: #fff;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 0.98rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+  min-width: 0;
+  display: inline-block;
+  text-align: center;
+}
+.admin-btn.view:hover {
+  background: var(--admin-accent);
+  color: #fff;
+}
 form {
   display: flex;
   flex-wrap: wrap;
@@ -198,27 +211,45 @@ form button[type="submit"]:hover {
   font-size: 1rem;
   box-shadow: 0 1px 4px var(--admin-shadow);
 }
-@media (max-width: 1000px) {
-  .admin-panel {
-    padding: 16px 4px;
+
+/* RESPONSIVE: Tablas sin scroll, columnas apiladas en móvil */
+@media (max-width: 900px) {
+  .admin-table, .admin-table thead, .admin-table tbody, .admin-table tr {
+    display: block;
+    width: 100%;
   }
-  .admin-content {
-    padding: 12px 2px;
+  .admin-table thead {
+    display: none;
   }
-  .admin-table th, .admin-table td {
-    padding: 7px 6px;
-    font-size: 0.97rem;
+  .admin-table tr {
+    margin-bottom: 18px;
+    background: var(--admin-card);
+    border-radius: 10px;
+    box-shadow: 0 1px 4px var(--admin-shadow);
+    padding: 10px 0;
   }
-  form input, form select {
-    min-width: 90px;
-    font-size: 0.97rem;
+  .admin-table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 16px;
+    border: none;
+    border-bottom: 1px solid var(--admin-border);
+    font-size: 1rem;
+    background: none;
+  }
+  .admin-table td:before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--admin-accent);
+    flex-basis: 45%;
+    text-align: left;
+  }
+  .admin-table tr:last-child td {
+    border-bottom: none;
   }
 }
 @media (max-width: 700px) {
-  .admin-table {
-    min-width: 500px;
-    font-size: 0.95rem;
-  }
   .admin-panel h1 {
     font-size: 1.3rem;
   }

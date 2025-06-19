@@ -31,10 +31,10 @@ const BookingAdmin = () => {
     if (!window.confirm('¿Eliminar esta reserva?')) return;
     setLoading(true);
     try {
-      await deleteBooking(id);
+      await deleteBooking(id, true);
       fetchBookings();
     } catch (err) {
-      setError('Error al eliminar reserva');
+      setError(err.response?.data?.error || 'Error al eliminar reserva');
     }
     setLoading(false);
   };
@@ -54,15 +54,15 @@ const BookingAdmin = () => {
             <tbody>
               {bookings.map(b => (
                 <tr key={b.id}>
-                  <td>{b.id}</td>
-                  <td>{courts.find(c=>c.id===b.id_cancha)?.nombre || b.id_cancha}</td>
-                  <td>{b.nombre_usuario}</td>
-                  <td>{b.telefono}</td>
-                  <td>{b.fecha}</td>
-                  <td>{b.hora_inicio}</td>
-                  <td>{b.hora_fin}</td>
-                  <td>{b.estado}</td>
-                  <td>
+                  <td data-label="ID">{b.id}</td>
+                  <td data-label="Cancha">{courts.find(c=>c.id===b.id_cancha)?.nombre || b.id_cancha}</td>
+                  <td data-label="Usuario">{b.nombre_usuario}</td>
+                  <td data-label="Teléfono">{b.telefono}</td>
+                  <td data-label="Fecha">{b.fecha}</td>
+                  <td data-label="Inicio">{b.hora_inicio}</td>
+                  <td data-label="Fin">{b.hora_fin}</td>
+                  <td data-label="Estado">{b.estado}</td>
+                  <td data-label="Acciones">
                     <button className="admin-btn delete" onClick={()=>handleDelete(b.id)}>Eliminar</button>
                   </td>
                 </tr>
