@@ -54,14 +54,16 @@ export default function CourtAvailability({ id, onClose }) {
   const bloqueos = data.bloqueos ? data.bloqueos.filter(b => b.fecha === fecha) : [];
   const horarios = data.horarios || [];
   const tipoCancha = data.tipo || 'Fútbol 5';
-  
-  const horas = getHourOptions(horarios, tipoCancha);
-  
-  const estadoHora = (horaInicio) => {
-    if (reservas.some(r => r.hora_inicio === horaInicio)) return 'reservado';
-    if (bloqueos.some(b => b.hora_inicio === horaInicio)) return 'bloqueado';
-    return 'disponible';
-  };
+
+  // Marcar cada horario como disponible, reservado o bloqueado
+  const horariosMarcados = horarios.map(horario => {
+    const reservado = reservas.some(r => r.hora_inicio === horario.hora_inicio);
+    const bloqueado = bloqueos.some(b => b.hora_inicio === horario.hora_inicio);
+    return {
+      ...horario,
+      estado: reservado ? 'reservado' : bloqueado ? 'bloqueado' : 'disponible'
+    };
+  });
 
   return (
     <div className="ca-overlay">
@@ -77,13 +79,11 @@ export default function CourtAvailability({ id, onClose }) {
           <input className="ca-date-input" type="date" value={fecha} onChange={e => setFecha(e.target.value)} />
         </label>
         <div className="ca-horas-grid">
-          {horas.map((hora, index) => (
-            <div key={id + '-' + fecha + '-' + hora.inicio} className={`ca-hora ${estadoHora(hora.inicio)}`}>
-              <div className="ca-hora-tiempo">{hora.inicio} - {hora.fin}</div>
-              <div className="ca-hora-duracion">({hora.duracion})</div>
+          {horariosMarcados.map((h, index) => (
+            <div key={id + '-' + fecha + '-' + h.hora_inicio} className={`ca-hora ${h.estado}`}>
+              <div className="ca-hora-tiempo">{h.hora_inicio} - {h.hora_fin}</div>
               <div className="ca-hora-estado">
-                {estadoHora(hora.inicio) === 'disponible' ? 'Disponible' : 
-                 estadoHora(hora.inicio) === 'reservado' ? 'Reservado' : 'Bloqueado'}
+                {h.estado === 'disponible' ? 'Disponible' : h.estado === 'reservado' ? 'Reservado' : 'Bloqueado'}
               </div>
             </div>
           ))}
