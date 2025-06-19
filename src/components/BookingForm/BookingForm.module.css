@@ -3,7 +3,7 @@
   flex-direction: row;
   background: var(--card-bg);
   border-radius: 18px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+  box-shadow: var(--shadow);
   max-width: 900px;
   margin: 2.5rem auto 2rem auto;
   overflow: hidden;
@@ -50,7 +50,7 @@
   margin-bottom: 1.2rem;
   text-align: left;
   letter-spacing: 1px;
-  box-shadow: 0 2px 8px #2196f322;
+  box-shadow: var(--shadow);
 }
 .label {
   display: flex;
@@ -71,12 +71,16 @@
   margin-top: 0.3rem;
   font-size: 1.08rem;
   margin-bottom: 0.7rem;
-  transition: border 0.2s;
+  transition: all 0.2s ease;
   font-family: 'Montserrat', Arial, sans-serif;
 }
 .input:focus, .select:focus {
-  border: 2px solid var(--accent2);
+  border-color: var(--accent2);
   outline: none;
+  box-shadow: 0 0 0 2px var(--accent2-alpha);
+}
+.input::placeholder {
+  color: var(--text-secondary);
 }
 .button {
   width: 100%;
@@ -88,15 +92,19 @@
   font-weight: 800;
   font-size: 1.25rem;
   cursor: pointer;
-  box-shadow: 0 2px 8px #2196f322;
+  box-shadow: var(--shadow);
   margin-top: 1.2rem;
-  transition: background 0.2s, color 0.2s, transform 0.1s;
+  transition: all 0.2s ease;
   font-family: 'Montserrat', Arial, sans-serif;
 }
 .button:hover {
   background: var(--button-hover);
-  color: var(--button-text);
-  transform: scale(1.04);
+  transform: translateY(-2px);
+}
+.button:disabled {
+  background: var(--text-secondary);
+  cursor: not-allowed;
+  transform: none;
 }
 .transferInfo {
   width: 100%;
@@ -106,14 +114,14 @@
   padding: 1.1rem 1.2rem;
   margin-bottom: 1.2rem;
   font-size: 1.08rem;
-  box-shadow: 0 2px 8px #2196f322;
+  box-shadow: var(--shadow);
   border: 1.5px solid var(--input-border);
   line-height: 1.7;
 }
 .formTitle {
   width: 100%;
   text-align: center;
-  color: #2196f3;
+  color: var(--accent2);
   font-size: 2.2rem;
   font-weight: 900;
   margin-bottom: 2.2rem;
@@ -133,21 +141,46 @@ body.dark .formTitle {
   --button-text: #fff;
   --button-hover: #00e676;
   --shadow: 0 4px 24px rgba(33,150,243,0.10);
+  --text-secondary: #64748b;
 }
-body.dark, :root.dark {
-  --card-bg: #232a34;
-  --text: #f6f8fa;
-  --accent2: #00e676;
+body[data-theme='dark'] {
+  --card-bg: #1a1e24;
+  --text: #e2e8f0;
+  --accent2: #60a5fa;
   --input-bg: #232a34;
   --input-border: #374151;
-  --button: #00e676;
-  --button-text: #181c24;
-  --button-hover: #2196f3;
+  --button: #60a5fa;
+  --button-text: #1a1e24;
+  --button-hover: #34d399;
   --shadow: 0 4px 24px rgba(0,0,0,0.18);
+  --text-secondary: #94a3b8;
 }
 .loadingMessage {
   text-align: center;
   padding: 2rem;
   color: var(--text-secondary);
   font-size: 1.1rem;
+}
+@media (max-width: 900px) {
+  .formCard {
+    flex-direction: column;
+    min-height: unset;
+  }
+  
+  .formWrap {
+    padding: 1.5rem 1rem 1rem 1rem;
+  }
+  
+  .label {
+    width: 100%;
+  }
+  
+  .formTitle {
+    font-size: 1.8rem;
+    margin-bottom: 1.8rem;
+  }
+  
+  .price {
+    font-size: 1.2rem;
+  }
 } 

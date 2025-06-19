@@ -129,10 +129,6 @@ export default function BookingList() {
           <span className="stat-number">{bookings.filter(b => b.estado === 'activa' || b.estado === 'confirmada').length}</span>
           <span className="stat-label">Activas</span>
         </div>
-        <div className="stat-item cancelled">
-          <span className="stat-number">{bookings.filter(b => b.estado === 'cancelada').length}</span>
-          <span className="stat-label">Canceladas</span>
-        </div>
       </div>
       
       {sortedBookings.length === 0 ? (
