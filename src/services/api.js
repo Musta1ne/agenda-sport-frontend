@@ -1,7 +1,12 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'https://reservas-backend-bkg0.onrender.com/api';
+// Usar localhost en desarrollo, URL de producción en producción
+const API_URL = import.meta.env.DEV 
+  ? 'http://localhost:3001/api'
+  : import.meta.env.VITE_API_URL;
+
 console.log('API_URL:', API_URL);
+console.log('Environment:', import.meta.env.DEV ? 'development' : 'production');
 
 // Configurar axios con timeout y manejo de errores
 const api = axios.create({
