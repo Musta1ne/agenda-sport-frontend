@@ -58,20 +58,17 @@ export default function BookingForm() {
       const fetchAvailability = async () => {
         try {
           const res = await getCourtAvailability(form.id_cancha);
-          const reservas = res.data.reservas?.filter(r => r.fecha === form.fecha) || [];
-          const bloqueos = res.data.bloqueos?.filter(b => b.fecha === form.fecha) || [];
           const horarios = res.data.horarios || [];
 
-          // Marcar cada horario como disponible, reservado o bloqueado
-          const horariosMarcados = horarios.map(horario => {
-            const reservado = reservas.some(r => r.hora_inicio === horario.hora_inicio);
-            const bloqueado = bloqueos.some(b => b.hora_inicio === horario.hora_inicio);
-            return {
-              ...horario,
-              estado: reservado ? 'reservado' : bloqueado ? 'bloqueado' : 'disponible'
-            };
+          // Filtrar horarios por fecha (si aplica)
+          const horariosFiltrados = horarios.filter(horario => {
+            // Si el horario es para todos los días, mostrarlo siempre
+            if (horario.dia_semana === 'todos') return true;
+            // Aquí podrías agregar lógica para días específicos si es necesario
+            return true;
           });
-          setHorasDisponibles(horariosMarcados);
+
+          setHorasDisponibles(horariosFiltrados);
         } catch (error) {
           console.error('Error fetching availability:', error);
           setHorasDisponibles([]);
