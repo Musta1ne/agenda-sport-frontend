@@ -61,25 +61,22 @@ export default function BookingForm() {
           const reservas = res.data.reservas?.filter(r => r.fecha === form.fecha) || [];
           const bloqueos = res.data.bloqueos?.filter(b => b.fecha === form.fecha) || [];
           const horarios = res.data.horarios || [];
-          
-          let opciones = [];
-          horarios.forEach(horario => {
-            const start = parseInt(horario.hora_inicio.split(':')[0]);
-            const end = parseInt(horario.hora_fin.split(':')[0]);
-            for (let h = start; h < end; h++) {
-              const turno = h.toString().padStart(2, '0') + ':00';
-              const ocupado = reservas.some(r => r.hora_inicio === turno) || 
-                             bloqueos.some(b => b.hora_inicio === turno);
-              if (!ocupado) opciones.push(turno);
-            }
+
+          // Marcar cada horario como disponible, reservado o bloqueado
+          const horariosMarcados = horarios.map(horario => {
+            const reservado = reservas.some(r => r.hora_inicio === horario.hora_inicio);
+            const bloqueado = bloqueos.some(b => b.hora_inicio === horario.hora_inicio);
+            return {
+              ...horario,
+              estado: reservado ? 'reservado' : bloqueado ? 'bloqueado' : 'disponible'
+            };
           });
-          setHorasDisponibles(opciones);
+          setHorasDisponibles(horariosMarcados);
         } catch (error) {
           console.error('Error fetching availability:', error);
           setHorasDisponibles([]);
         }
       };
-
       fetchAvailability();
     } else {
       setHorasDisponibles([]);
@@ -93,20 +90,9 @@ export default function BookingForm() {
 
   const calcularHoraFin = (horaInicio) => {
     if (!horaInicio) return '';
-    
-    const hora = parseInt(horaInicio.split(':')[0]);
-    const minutos = parseInt(horaInicio.split(':')[1]);
-    
-    if (tipoCancha === 'Pádel') {
-      // Turno de 1:30h para Pádel
-      const totalMinutos = hora * 60 + minutos + 90;
-      const nuevaHora = Math.floor(totalMinutos / 60);
-      const nuevosMinutos = totalMinutos % 60;
-      return nuevaHora.toString().padStart(2, '0') + ':' + nuevosMinutos.toString().padStart(2, '0');
-    } else {
-      // Turno de 1h para Fútbol 5 y 7
-      return (hora + 1).toString().padStart(2, '0') + ':00';
-    }
+    // Buscar el horario seleccionado
+    const horario = horasDisponibles.find(h => h.hora_inicio === horaInicio);
+    return horario ? horario.hora_fin : '';
   };
 
   const handleSubmit = async e => {
@@ -220,15 +206,11 @@ export default function BookingForm() {
           <span><MdAccessTime style={{ color: 'var(--accent2)', marginRight: 6, verticalAlign: 'middle' }} /> Horario</span>
           <select className={styles.select} name="hora_inicio" value={form.hora_inicio} onChange={handleChange} required disabled={!horasDisponibles.length}>
             <option value="">{horasDisponibles.length ? 'Seleccionar horario' : 'Selecciona fecha y cancha primero'}</option>
-            {horasDisponibles.map(h => {
-              const horaFin = calcularHoraFin(h);
-              const duracion = tipoCancha === 'Pádel' ? '1:30h' : '1h';
-              return (
-                <option key={h} value={h}>
-                  {h} - {horaFin} ({duracion})
-                </option>
-              );
-            })}
+            {horasDisponibles.map(h => (
+              <option key={h.hora_inicio} value={h.hora_inicio} disabled={h.estado !== 'disponible'}>
+                {h.hora_inicio} - {h.hora_fin} {h.estado === 'reservado' ? '(Reservado)' : h.estado === 'bloqueado' ? '(Bloqueado)' : ''}
+              </option>
+            ))}
           </select>
         </label>
         <label className={styles.label}>
