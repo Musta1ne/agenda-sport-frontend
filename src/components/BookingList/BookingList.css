@@ -31,8 +31,8 @@
 
 body[data-theme='dark'] {
   --booking-bg: #1a1e24;
-  --booking-text: #e2e8f0;
-  --booking-text-secondary: #94a3b8;
+  --booking-text: #f8fafc;
+  --booking-text-secondary: #cbd5e1;
   --booking-border: #334155;
   --booking-shadow: rgba(0, 0, 0, 0.25);
   --booking-header-bg: #0f172a;
@@ -46,13 +46,13 @@ body[data-theme='dark'] {
   --status-pending-bg: #854d0e;
   --status-pending-text: #fcd34d;
   --status-default-bg: #1e293b;
-  --status-default-text: #94a3b8;
+  --status-default-text: #cbd5e1;
   
   /* Stats */
   --stat-bg: #1e293b;
   --stat-border: #334155;
-  --stat-number: #e2e8f0;
-  --stat-label: #94a3b8;
+  --stat-number: #f8fafc;
+  --stat-label: #cbd5e1;
   --stat-active-bg: #064e3b;
   --stat-active-border: #059669;
   --stat-cancelled-bg: #7f1d1d;
@@ -391,27 +391,51 @@ body[data-theme='dark'] {
 }
 
 body[data-theme='dark'] .booking-list {
-  background: #2c2c2c;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  background: var(--booking-bg);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.3);
 }
 body[data-theme='dark'] .booking-title {
-  color: #60a5fa;
+  color: var(--booking-text);
 }
-body[data-theme='dark'] .booking-table th {
-  background: #232a34;
-  color: #60a5fa;
+body[data-theme='dark'] .bookings-table th {
+  background: var(--booking-header-bg);
+  color: var(--booking-text);
+  border-bottom: 2px solid var(--booking-border);
 }
-body[data-theme='dark'] .booking-table td {
-  background: #232a34;
-  color: #f6f8fa;
+body[data-theme='dark'] .bookings-table td {
+  color: var(--booking-text);
+  border-bottom: 1px solid var(--booking-border);
 }
-body[data-theme='dark'] .cancel-btn {
-  background: #ff5252;
-  color: #fff;
+body[data-theme='dark'] .court-name {
+  color: var(--booking-text);
+  font-weight: 600;
 }
-body[data-theme='dark'] .cancel-btn:hover {
-  background: #b71c1c;
-  color: #fff;
+body[data-theme='dark'] .booking-date,
+body[data-theme='dark'] .booking-time {
+  color: var(--booking-text-secondary);
+}
+body[data-theme='dark'] .booking-info {
+  background: var(--booking-header-bg);
+  border: 1px solid var(--booking-border);
+}
+body[data-theme='dark'] .booking-info h3 {
+  color: var(--booking-text);
+}
+body[data-theme='dark'] .info-content {
+  color: var(--booking-text-secondary);
+}
+body[data-theme='dark'] .info-content strong {
+  color: var(--booking-text);
+}
+body[data-theme='dark'] .phone-link {
+  color: var(--status-active-text);
+}
+body[data-theme='dark'] .no-bookings-message {
+  color: var(--booking-text-secondary);
+}
+body[data-theme='dark'] .loading-message,
+body[data-theme='dark'] .error-message {
+  color: var(--booking-text-secondary);
 }
 
 .booking-cancel-info {
