@@ -46,4 +46,14 @@ export const getAllBookings = () => api.get('/bookings');
 export const getSports = () => api.get('/sports');
 
 // Bloqueos
-export const createBlock = (data) => api.post('/blocks', data); 
+export const createBlock = (data) => api.post('/blocks', data);
+
+// Administración de canchas
+export const createCourt = (data) => api.post('/courts', data);
+export const updateCourt = (id, data) => api.put(`/courts/${id}`, data);
+export const deleteCourt = (id) => api.delete(`/courts/${id}`);
+
+// Administración de bloqueos/horarios
+export const getBlocks = () => api.get('/blocks');
+export const updateBlock = (id, data) => api.put(`/blocks/${id}`, data);
+export const deleteBlock = (id) => api.delete(`/blocks/${id}`); 

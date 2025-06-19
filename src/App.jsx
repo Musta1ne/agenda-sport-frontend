@@ -9,6 +9,7 @@ import Courts from './pages/Courts';
 import Bookings from './pages/Bookings';
 import NotFound from './pages/NotFound';
 import Navbar from './components/Navbar';
+import AdminPanel from './pages/AdminPanel';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -39,6 +40,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/courts" element={<Courts />} />
             <Route path="/bookings" element={<Bookings />} />
+            <Route path="/admin" element={<AdminPanel />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
