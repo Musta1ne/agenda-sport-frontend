@@ -499,7 +499,7 @@ body[data-theme='dark'] .court-type {
   margin-bottom: 0.5rem;
 }
 body[data-theme='dark'] .court-name {
-  color: var(--court-name-dark);
+  color: var(--ca-bg);
 }
 .court-btn {
   margin-top: 1.1rem;
