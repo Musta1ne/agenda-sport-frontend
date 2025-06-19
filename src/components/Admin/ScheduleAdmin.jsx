@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getSchedules, createSchedule, updateSchedule, deleteSchedule, getCourts } from '../../services/api';
-
+import './ScheduleAdmin.css';
 
 const initialForm = { id_cancha: '', dia_semana: 'Lunes', hora_inicio: '12:00', hora_fin: '13:00', activo: 1 };
 
