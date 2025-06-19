@@ -77,30 +77,32 @@ const CourtAdmin = () => {
         {editing && <button type="button" onClick={()=>{setForm(initialForm);setEditing(null);}}>Cancelar</button>}
       </form>
       {loading ? <p>Cargando...</p> : (
-        <table border="1" cellPadding="5">
-          <thead>
-            <tr>
-              <th>ID</th><th>Nombre</th><th>Tipo</th><th>Superficie</th><th>Estado</th><th>Precio</th><th>Imagen</th><th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {courts.map(court => (
-              <tr key={court.id}>
-                <td>{court.id}</td>
-                <td>{court.nombre}</td>
-                <td>{court.tipo}</td>
-                <td>{court.tipo_superficie}</td>
-                <td>{court.estado}</td>
-                <td>{court.precio}</td>
-                <td>{court.imagen}</td>
-                <td>
-                  <button onClick={()=>handleEdit(court)}>Editar</button>
-                  <button onClick={()=>handleDelete(court.id)}>Eliminar</button>
-                </td>
+        <div className="admin-table-wrapper">
+          <table className="admin-table">
+            <thead>
+              <tr>
+                <th>ID</th><th>Nombre</th><th>Tipo</th><th>Superficie</th><th>Estado</th><th>Precio</th><th>Imagen</th><th>Acciones</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {courts.map(court => (
+                <tr key={court.id}>
+                  <td>{court.id}</td>
+                  <td>{court.nombre}</td>
+                  <td>{court.tipo}</td>
+                  <td>{court.tipo_superficie}</td>
+                  <td>{court.estado}</td>
+                  <td>{court.precio}</td>
+                  <td>{court.imagen}</td>
+                  <td>
+                    <button className="admin-btn edit" onClick={()=>handleEdit(court)}>Editar</button>
+                    <button className="admin-btn delete" onClick={()=>handleDelete(court.id)}>Eliminar</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );

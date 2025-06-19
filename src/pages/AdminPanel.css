@@ -1,16 +1,44 @@
+:root {
+  --admin-bg: #f6f8fa;
+  --admin-text: #181c24;
+  --admin-card: #fff;
+  --admin-border: #b0bec5;
+  --admin-accent: #2196f3;
+  --admin-accent2: #00e676;
+  --admin-shadow: 0 4px 24px rgba(33,150,243,0.10);
+  --admin-btn: #2196f3;
+  --admin-btn-text: #fff;
+  --admin-btn-hover: #00e676;
+  --admin-error-bg: #ffebee;
+  --admin-error-text: #d32f2f;
+}
+[data-theme='dark'] {
+  --admin-bg: #181c24;
+  --admin-text: #f6f8fa;
+  --admin-card: #232a34;
+  --admin-border: #374151;
+  --admin-accent: #00e676;
+  --admin-accent2: #2196f3;
+  --admin-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  --admin-btn: #00e676;
+  --admin-btn-text: #181c24;
+  --admin-btn-hover: #2196f3;
+  --admin-error-bg: #2d1a1a;
+  --admin-error-text: #ff8a80;
+}
 body {
   font-family: 'Poppins', 'Roboto', Arial, sans-serif;
 }
 .admin-panel {
   max-width: 1100px;
   margin: 40px auto;
-  background: #fff;
+  background: var(--admin-card);
   border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(25, 118, 210, 0.08);
+  box-shadow: var(--admin-shadow);
   padding: 36px 32px 32px 32px;
 }
 .admin-panel h1 {
-  color: #1976d2;
+  color: var(--admin-accent);
   font-size: 2.2rem;
   margin-bottom: 18px;
   letter-spacing: 1px;
@@ -19,57 +47,71 @@ body {
   display: flex;
   gap: 0;
   margin-bottom: 24px;
-  border-bottom: 2px solid #e0e0e0;
+  border-bottom: 2px solid var(--admin-border);
 }
 .admin-tabs button {
   padding: 12px 32px;
   border: none;
-  background: #f5f7fa;
+  background: var(--admin-bg);
   border-radius: 16px 16px 0 0;
   cursor: pointer;
   font-weight: 600;
   font-size: 1.1rem;
-  color: #1976d2;
+  color: var(--admin-accent);
   margin-right: 2px;
   transition: background 0.2s, color 0.2s;
   border-bottom: 2px solid transparent;
 }
 .admin-tabs button.active {
-  background: #1976d2;
-  color: #fff;
-  border-bottom: 2px solid #1976d2;
-  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
+  background: var(--admin-accent);
+  color: var(--admin-btn-text);
+  border-bottom: 2px solid var(--admin-accent);
+  box-shadow: 0 2px 8px var(--admin-shadow);
 }
 .admin-content {
-  background: #fafbfc;
+  background: var(--admin-bg);
   border-radius: 0 0 16px 16px;
   padding: 32px 24px 24px 24px;
   min-height: 340px;
-  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.04);
+  box-shadow: 0 2px 8px var(--admin-shadow);
+}
+.admin-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  margin-bottom: 32px;
 }
 .admin-table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  background: #fff;
-  margin-bottom: 32px;
+  background: var(--admin-card);
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.04);
+  box-shadow: 0 2px 8px var(--admin-shadow);
+  min-width: 700px;
 }
 .admin-table th, .admin-table td {
   padding: 13px 18px;
   text-align: left;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--admin-border);
+  color: var(--admin-text);
 }
 .admin-table th {
-  background: #f5f7fa;
+  background: var(--admin-bg);
   font-weight: 700;
-  color: #1976d2;
+  color: var(--admin-accent);
   font-size: 1.05rem;
+  position: sticky;
+  top: 0;
+  z-index: 2;
 }
 .admin-table tr:nth-child(even) td {
-  background: #fafbfc;
+  background: var(--admin-bg);
+}
+.admin-table tr:hover td {
+  background: var(--admin-accent2);
+  color: #fff;
+  transition: background 0.2s, color 0.2s;
 }
 .admin-table tr:last-child td {
   border-bottom: none;
@@ -83,23 +125,26 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-  box-shadow: 0 1px 4px rgba(25, 118, 210, 0.08);
+  box-shadow: 0 1px 4px var(--admin-shadow);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 .admin-btn.edit {
-  background: #e3f2fd;
-  color: #1976d2;
+  background: var(--admin-accent2);
+  color: #fff;
 }
 .admin-btn.edit:hover {
-  background: #bbdefb;
-  color: #0d47a1;
+  background: var(--admin-accent);
+  color: #fff;
 }
 .admin-btn.delete {
-  background: #ffebee;
-  color: #d32f2f;
+  background: var(--admin-error-bg);
+  color: var(--admin-error-text);
 }
 .admin-btn.delete:hover {
-  background: #ffcdd2;
-  color: #b71c1c;
+  background: #ff8a80;
+  color: #fff;
 }
 form {
   display: flex;
@@ -107,28 +152,29 @@ form {
   gap: 16px;
   margin-bottom: 24px;
   align-items: center;
-  background: #f5f7fa;
+  background: var(--admin-bg);
   padding: 18px 18px 10px 18px;
   border-radius: 10px;
-  box-shadow: 0 1px 4px rgba(25, 118, 210, 0.04);
+  box-shadow: 0 1px 4px var(--admin-shadow);
 }
 form input, form select {
   padding: 10px 14px;
-  border: 1.5px solid #bdbdbd;
+  border: 1.5px solid var(--admin-border);
   border-radius: 6px;
   font-size: 1rem;
   outline: none;
   min-width: 140px;
-  background: #fff;
-  transition: border 0.2s;
+  background: var(--admin-card);
+  color: var(--admin-text);
+  transition: border 0.2s, background 0.2s, color 0.2s;
 }
 form input:focus, form select:focus {
-  border: 1.5px solid #1976d2;
-  background: #e3f2fd;
+  border: 1.5px solid var(--admin-accent2);
+  background: var(--admin-bg);
 }
 form button[type="submit"] {
-  background: #1976d2;
-  color: #fff;
+  background: var(--admin-btn);
+  color: var(--admin-btn-text);
   font-weight: bold;
   border: none;
   border-radius: 6px;
@@ -136,22 +182,23 @@ form button[type="submit"] {
   cursor: pointer;
   font-size: 1rem;
   transition: background 0.2s, box-shadow 0.2s;
-  box-shadow: 0 1px 4px rgba(25, 118, 210, 0.08);
+  box-shadow: 0 1px 4px var(--admin-shadow);
 }
 form button[type="submit"]:hover {
-  background: #1565c0;
+  background: var(--admin-btn-hover);
+  color: #fff;
 }
 [style*='color:red'] {
-  background: #ffebee;
-  color: #d32f2f !important;
+  background: var(--admin-error-bg);
+  color: var(--admin-error-text) !important;
   padding: 10px 18px;
   border-radius: 6px;
   margin-bottom: 14px;
   font-weight: 600;
   font-size: 1rem;
-  box-shadow: 0 1px 4px rgba(211, 47, 47, 0.08);
+  box-shadow: 0 1px 4px var(--admin-shadow);
 }
-@media (max-width: 800px) {
+@media (max-width: 1000px) {
   .admin-panel {
     padding: 16px 4px;
   }
@@ -165,5 +212,18 @@ form button[type="submit"]:hover {
   form input, form select {
     min-width: 90px;
     font-size: 0.97rem;
+  }
+}
+@media (max-width: 700px) {
+  .admin-table {
+    min-width: 500px;
+    font-size: 0.95rem;
+  }
+  .admin-panel h1 {
+    font-size: 1.3rem;
+  }
+  .admin-tabs button {
+    font-size: 0.97rem;
+    padding: 8px 10px;
   }
 } 

@@ -87,29 +87,31 @@ const BlockAdmin = () => {
         {editing && <button type="button" onClick={()=>{setForm(initialForm);setEditing(null);}}>Cancelar</button>}
       </form>
       {loading ? <p>Cargando...</p> : (
-        <table className="admin-table">
-          <thead>
-            <tr>
-              <th>ID</th><th>Cancha</th><th>Fecha</th><th>Inicio</th><th>Fin</th><th>Motivo</th><th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {blocks.map(block => (
-              <tr key={block.id}>
-                <td>{block.id}</td>
-                <td>{courts.find(c=>c.id===block.id_cancha)?.nombre || block.id_cancha}</td>
-                <td>{block.fecha}</td>
-                <td>{block.hora_inicio}</td>
-                <td>{block.hora_fin}</td>
-                <td>{block.motivo}</td>
-                <td>
-                  <button className="admin-btn edit" onClick={()=>handleEdit(block)}>Editar</button>
-                  <button className="admin-btn delete" onClick={()=>handleDelete(block.id)}>Eliminar</button>
-                </td>
+        <div className="admin-table-wrapper">
+          <table className="admin-table">
+            <thead>
+              <tr>
+                <th>ID</th><th>Cancha</th><th>Fecha</th><th>Inicio</th><th>Fin</th><th>Motivo</th><th>Acciones</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {blocks.map(block => (
+                <tr key={block.id}>
+                  <td>{block.id}</td>
+                  <td>{courts.find(c=>c.id===block.id_cancha)?.nombre || block.id_cancha}</td>
+                  <td>{block.fecha}</td>
+                  <td>{block.hora_inicio}</td>
+                  <td>{block.hora_fin}</td>
+                  <td>{block.motivo}</td>
+                  <td>
+                    <button className="admin-btn edit" onClick={()=>handleEdit(block)}>Editar</button>
+                    <button className="admin-btn delete" onClick={()=>handleDelete(block.id)}>Eliminar</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );

@@ -44,30 +44,32 @@ const BookingAdmin = () => {
       <h2>Reservas</h2>
       {error && <div style={{color:'red'}}>{error}</div>}
       {loading ? <p>Cargando...</p> : (
-        <table border="1" cellPadding="5">
-          <thead>
-            <tr>
-              <th>ID</th><th>Cancha</th><th>Usuario</th><th>Teléfono</th><th>Fecha</th><th>Inicio</th><th>Fin</th><th>Estado</th><th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {bookings.map(b => (
-              <tr key={b.id}>
-                <td>{b.id}</td>
-                <td>{courts.find(c=>c.id===b.id_cancha)?.nombre || b.id_cancha}</td>
-                <td>{b.nombre_usuario}</td>
-                <td>{b.telefono}</td>
-                <td>{b.fecha}</td>
-                <td>{b.hora_inicio}</td>
-                <td>{b.hora_fin}</td>
-                <td>{b.estado}</td>
-                <td>
-                  <button onClick={()=>handleDelete(b.id)}>Eliminar</button>
-                </td>
+        <div className="admin-table-wrapper">
+          <table className="admin-table">
+            <thead>
+              <tr>
+                <th>ID</th><th>Cancha</th><th>Usuario</th><th>Teléfono</th><th>Fecha</th><th>Inicio</th><th>Fin</th><th>Estado</th><th>Acciones</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {bookings.map(b => (
+                <tr key={b.id}>
+                  <td>{b.id}</td>
+                  <td>{courts.find(c=>c.id===b.id_cancha)?.nombre || b.id_cancha}</td>
+                  <td>{b.nombre_usuario}</td>
+                  <td>{b.telefono}</td>
+                  <td>{b.fecha}</td>
+                  <td>{b.hora_inicio}</td>
+                  <td>{b.hora_fin}</td>
+                  <td>{b.estado}</td>
+                  <td>
+                    <button className="admin-btn delete" onClick={()=>handleDelete(b.id)}>Eliminar</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );
