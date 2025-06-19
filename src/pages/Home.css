@@ -1,87 +1,124 @@
-body {
-  background: #f4f8fb;
-}
-body[data-theme='dark'] {
-  background: #10192b;
+:root {
+  --color-bg-light: #f4f8fb;
+  --color-bg-dark: #10192b;
+  --color-card-light: #fff;
+  --color-card-dark: #232a34;
+  --color-primary: #2563eb;
+  --color-accent: #00e676;
+  --color-text-light: #181c24;
+  --color-text-dark: #fff;
+  --color-shadow-light: #b3cfff33;
+  --color-shadow-dark: #10192b99;
 }
 
-.home-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2.5rem 1rem;
-  font-family: 'Montserrat', Arial, sans-serif;
+body {
+  background: var(--color-bg-light);
 }
-.home-hero {
-  width: 100%;
-  min-height: 55vh;
-  background: linear-gradient(120deg, #e3f0ff 60%, #b3cfff 100%);
+body[data-theme='dark'] {
+  background: var(--color-bg-dark);
+}
+
+.home2-container {
+  font-family: 'Montserrat', Arial, sans-serif;
+  background: var(--color-bg-light);
+  min-height: 100vh;
+}
+body[data-theme='dark'] .home2-container {
+  background: var(--color-bg-dark);
+}
+
+.home2-hero {
   position: relative;
-  border-radius: 22px 22px 0 0;
+  min-height: 48vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 3.5rem 1rem 2rem 1rem;
+  border-radius: 0 0 32px 32px;
   overflow: hidden;
   margin-bottom: 2.5rem;
-  box-shadow: 0 4px 32px #b3cfff33;
 }
-body[data-theme='dark'] .home-hero {
-  background: linear-gradient(120deg, #181c24 60%, #232a34 100%);
-  box-shadow: 0 4px 32px #10192b99;
-}
-.home-overlay {
+.home2-hero-bg {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: transparent;
+  background: url('https://services.meteored.com/img/article/por-que-se-tiene-que-retirar-el-caucho-de-los-campos-de-futbol-cual-es-el-problema-medioambiental-1697556169464_512.jpg') center/cover no-repeat;
+  filter: blur(4px) brightness(0.7);
   z-index: 1;
 }
-body[data-theme='dark'] .home-overlay {
-  background: rgba(16, 25, 43, 0.72);
-}
-.home-hero-content {
+.home2-hero-content {
   position: relative;
   z-index: 2;
-  color: #181c24;
   text-align: center;
+  color: var(--color-text-light);
   max-width: 700px;
   margin: 0 auto;
 }
-body[data-theme='dark'] .home-hero-content {
-  color: #fff;
+body[data-theme='dark'] .home2-hero-content {
+  color: var(--color-text-dark);
 }
-.home-hero-title {
+.home2-hero-content h1 {
   font-size: 2.7rem;
   font-weight: 900;
   margin-bottom: 1.2rem;
   letter-spacing: 1.5px;
-  text-shadow: 0 4px 24px #b3cfff44;
 }
-body[data-theme='dark'] .home-hero-title {
-  text-shadow: 0 4px 24px #10192b99;
+.home2-highlight {
+  color: var(--color-accent);
+  text-shadow: 0 2px 8px #2563eb44;
 }
-.home-hero-desc {
+.home2-hero-content p {
   font-size: 1.25rem;
-  color: #2563eb;
-  margin-bottom: 2.5rem;
-  text-shadow: 0 2px 8px #b3cfff44;
+  margin-bottom: 2.2rem;
+  color: #e3f0ff;
+  text-shadow: 0 2px 8px #2563eb44;
 }
-body[data-theme='dark'] .home-hero-desc {
+body[data-theme='dark'] .home2-hero-content p {
+  color: #b3cfff;
+}
+.home2-cta {
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 2.2rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px #60a5fa22;
+  transition: background 0.2s, color 0.2s, transform 0.1s;
+}
+.home2-cta:hover {
+  background: var(--color-accent);
+  color: var(--color-text-light);
+  transform: scale(1.06);
+}
+
+.home2-section-title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  margin-bottom: 2.2rem;
+  letter-spacing: 0.5px;
+}
+body[data-theme='dark'] .home2-section-title {
   color: #60a5fa;
-  text-shadow: 0 2px 8px #10192b99;
 }
-.home-cards {
+
+.home2-deportes {
+  margin: 0 auto 2.5rem auto;
+  max-width: 1100px;
+}
+.home2-deportes-grid {
   display: flex;
   justify-content: center;
   gap: 2.5rem;
-  margin: -60px auto 0 auto;
-  position: relative;
-  z-index: 3;
   flex-wrap: wrap;
 }
-.home-card {
-  background: #fff;
-  border-radius: 22px;
-  box-shadow: 0 4px 32px #b3cfff33;
+.home2-deporte-card {
+  border-radius: 18px;
+  box-shadow: 0 4px 32px var(--color-shadow-light);
   width: 320px;
   min-height: 340px;
   display: flex;
@@ -91,32 +128,58 @@ body[data-theme='dark'] .home-hero-desc {
   transition: transform 0.25s, box-shadow 0.25s, background 0.3s;
   cursor: pointer;
   border: 2.5px solid #e3f0ff;
+  position: relative;
+  background: var(--color-card-light);
 }
-.home-card:hover {
+.home2-deporte-card:hover {
   transform: translateY(-8px) scale(1.03);
   box-shadow: 0 8px 32px #60a5fa66;
   background: #e3f0ff;
 }
-.home-card-img {
+body[data-theme='dark'] .home2-deporte-card {
+  background: var(--color-card-dark);
+  box-shadow: 0 4px 32px var(--color-shadow-dark);
+  border: 2.5px solid #334155;
+}
+.home2-deporte-img-wrap {
+  width: 100%;
+  height: 170px;
+  position: relative;
+}
+.home2-deporte-img {
   width: 100%;
   height: 170px;
   object-fit: cover;
+  border-radius: 18px 18px 0 0;
 }
-.home-card-info {
+.home2-deporte-icon {
+  position: absolute;
+  bottom: 10px;
+  right: 16px;
+  background: #fff;
+  border-radius: 50%;
+  padding: 6px;
+  box-shadow: 0 2px 8px #2563eb22;
+}
+.home2-deporte-info {
   padding: 1.2rem 1.1rem 1.5rem 1.1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
-.home-card-title {
-  font-size: 1.35rem;
+.home2-deporte-info h3 {
+  font-size: 1.25rem;
   font-weight: 800;
   margin: 0.7rem 0 0.5rem 0;
-  color: #2563eb;
+  color: var(--color-primary);
 }
-.home-card-btn {
+body[data-theme='dark'] .home2-deporte-info h3 {
+  color: #60a5fa;
+}
+.home2-deporte-btn {
   margin-top: 1.1rem;
-  background: #2563eb;
+  background: var(--color-primary);
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -127,83 +190,136 @@ body[data-theme='dark'] .home-hero-desc {
   box-shadow: 0 2px 8px #60a5fa22;
   transition: background 0.2s, color 0.2s, transform 0.1s;
 }
-.home-card-btn:hover {
-  background: #60a5fa;
+.home2-deporte-btn:hover {
+  background: var(--color-accent);
+  color: var(--color-text-light);
+  transform: scale(1.06);
+}
+
+.home2-pasos {
+  margin: 3.5rem auto 2.5rem auto;
+  max-width: 1100px;
+  background: var(--color-card-light);
+  border-radius: 18px;
+  box-shadow: 0 4px 32px var(--color-shadow-light);
+  padding: 2.2rem 1rem 1.5rem 1rem;
+}
+body[data-theme='dark'] .home2-pasos {
+  background: var(--color-card-dark);
+  box-shadow: 0 4px 32px var(--color-shadow-dark);
+}
+.home2-pasos-grid {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+.home2-paso {
+  display: flex;
+  align-items: flex-start;
+  background: #e3f0ff;
+  border-radius: 14px;
+  padding: 1.2rem 1.5rem;
+  min-width: 220px;
+  max-width: 340px;
+  box-shadow: 0 2px 12px #b3cfff22;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+body[data-theme='dark'] .home2-paso {
+  background: #181c24;
+  box-shadow: 0 2px 12px var(--color-shadow-dark);
+}
+.home2-paso-icon {
+  margin-right: 1.1rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.home2-paso h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 0.3rem 0;
+  color: var(--color-primary);
+}
+body[data-theme='dark'] .home2-paso h4 {
+  color: #60a5fa;
+}
+.home2-paso p {
+  font-size: 1rem;
+  color: var(--color-text-light);
+  margin: 0;
+}
+body[data-theme='dark'] .home2-paso p {
+  color: var(--color-text-dark);
+}
+
+.home2-contacto {
+  margin: 3.5rem auto 2.5rem auto;
+  text-align: center;
+}
+.home2-wsp-btn {
+  display: inline-flex;
+  align-items: center;
+  background: #25d366;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.7rem 1.7rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px #60a5fa22;
+  transition: background 0.2s, color 0.2s, transform 0.1s;
+  margin-top: 1.2rem;
+  text-decoration: none;
+}
+.home2-wsp-btn:hover {
+  background: #128c7e;
   color: #fff;
   transform: scale(1.06);
 }
-.home-card-info svg {
-  color: #2563eb !important;
-  transition: color 0.2s;
-}
-body[data-theme='dark'] .home-card {
-  background: #232a34;
-  box-shadow: 0 4px 32px #10192b99;
-  border: 2.5px solid #334155;
-}
-body[data-theme='dark'] .home-card:hover {
-  background: #181c24;
-}
-body[data-theme='dark'] .home-card-title {
-  color: #60a5fa;
-}
-body[data-theme='dark'] .home-card-btn {
-  background: #60a5fa;
-  color: #181c24;
-}
-body[data-theme='dark'] .home-card-btn:hover {
-  background: #2563eb;
-  color: #fff;
-}
-body[data-theme='dark'] .home-card-info svg {
-  color: #60a5fa !important;
-}
 
 @media (max-width: 900px) {
-  .home-cards {
+  .home2-deportes-grid,
+  .home2-pasos-grid {
     gap: 1.2rem;
   }
-  .home-card {
+  .home2-deporte-card,
+  .home2-paso {
     width: 90vw;
     max-width: 340px;
   }
 }
 @media (max-width: 600px) {
-  .home-container {
-    padding: 1.2rem 0.2rem;
+  .home2-hero-content h1 {
+    font-size: 1.3rem;
   }
-  .home-hero {
-    min-height: 32vh;
-    border-radius: 14px 14px 0 0;
-    margin-bottom: 1.2rem;
+  .home2-section-title {
+    font-size: 1.1rem;
+    margin-bottom: 1.1rem;
   }
-  .home-hero-title {
-    font-size: 1.5rem;
-  }
-  .home-hero-desc {
-    font-size: 1rem;
-    margin-bottom: 1.2rem;
-  }
-  .home-cards {
-    gap: 0.7rem;
-    margin-top: -30px;
-  }
-  .home-card {
+  .home2-deporte-card,
+  .home2-paso {
     width: 99vw;
     max-width: 99vw;
     min-height: 180px;
     border-radius: 10px;
     border-width: 1.5px;
-  }
-  .home-card-info {
     padding: 0.5rem 0.3rem 0.7rem 0.3rem;
   }
-  .home-card-title {
+  .home2-deporte-info h3 {
     font-size: 1rem;
   }
-  .home-card-btn {
+  .home2-deporte-btn {
     font-size: 0.95rem;
     padding: 0.4rem 0.7rem;
     border-radius: 6px;
   }
-} 
+  .home2-paso h4 {
+    font-size: 1rem;
+  }
+  .home2-paso p {
+    font-size: 0.95rem;
+  }
+}
