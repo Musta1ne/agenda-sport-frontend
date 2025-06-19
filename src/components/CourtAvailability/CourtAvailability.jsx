@@ -9,21 +9,23 @@ export default function CourtAvailability({ id, onClose }) {
   const [error, setError] = useState(null);
   const [fecha, setFecha] = useState(() => new Date().toISOString().slice(0, 10));
 
-  useEffect(() => {
+  const fetchAvailability = async () => {
     setLoading(true);
     setError(null);
-    
-    getCourtAvailability(id)
-      .then(res => {
-        setData(res.data);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error('Error al cargar disponibilidad:', err);
-        setError('Error al cargar la disponibilidad');
-        setLoading(false);
-      });
-  }, [id]);
+    try {
+      const res = await getCourtAvailability(id, fecha);
+      setData(res.data);
+    } catch (err) {
+      console.error('Error al cargar disponibilidad:', err);
+      setError('Error al cargar la disponibilidad');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchAvailability();
+  }, [id, fecha]); // Actualizar cuando cambie la fecha o el id
 
   if (loading) {
     return (

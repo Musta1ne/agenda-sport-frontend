@@ -31,7 +31,7 @@ api.interceptors.response.use(
 
 // Canchas
 export const getCourts = () => api.get('/courts');
-export const getCourtAvailability = (id) => api.get(`/courts/${id}/availability`);
+export const getCourtAvailability = (id, fecha) => api.get(`/courts/${id}/availability?fecha=${fecha}`);
 export const getCourtBookings = (id) => api.get(`/courts/${id}/bookings`);
 export const getCourtBlocks = (id) => api.get(`/courts/${id}/blocks`);
 
