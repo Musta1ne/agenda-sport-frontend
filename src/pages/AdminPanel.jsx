@@ -10,7 +10,8 @@ const AdminPanel = () => {
 
   // Solo mostrar el botón si está en producción
   const isProd = !import.meta.env.DEV;
-  const apiUrl = import.meta.env.VITE_API_URL || '';
+  // Usar la URL absoluta del backend para evitar problemas en Vercel
+  const apiUrl = import.meta.env.VITE_API_URL || 'https://reservas-backend-bkg.onrender.com/api';
   const downloadUrl = apiUrl.replace(/\/$/, '') + '/bookings/download-json';
 
   return (
