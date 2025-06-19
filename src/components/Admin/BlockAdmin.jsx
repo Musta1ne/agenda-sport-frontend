@@ -87,7 +87,7 @@ const BlockAdmin = () => {
         {editing && <button type="button" onClick={()=>{setForm(initialForm);setEditing(null);}}>Cancelar</button>}
       </form>
       {loading ? <p>Cargando...</p> : (
-        <table border="1" cellPadding="5">
+        <table className="admin-table">
           <thead>
             <tr>
               <th>ID</th><th>Cancha</th><th>Fecha</th><th>Inicio</th><th>Fin</th><th>Motivo</th><th>Acciones</th>
@@ -103,8 +103,8 @@ const BlockAdmin = () => {
                 <td>{block.hora_fin}</td>
                 <td>{block.motivo}</td>
                 <td>
-                  <button onClick={()=>handleEdit(block)}>Editar</button>
-                  <button onClick={()=>handleDelete(block.id)}>Eliminar</button>
+                  <button className="admin-btn edit" onClick={()=>handleEdit(block)}>Editar</button>
+                  <button className="admin-btn delete" onClick={()=>handleDelete(block.id)}>Eliminar</button>
                 </td>
               </tr>
             ))}

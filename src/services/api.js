@@ -56,4 +56,10 @@ export const deleteCourt = (id) => api.delete(`/courts/${id}`);
 // Administración de bloqueos/horarios
 export const getBlocks = () => api.get('/blocks');
 export const updateBlock = (id, data) => api.put(`/blocks/${id}`, data);
-export const deleteBlock = (id) => api.delete(`/blocks/${id}`); 
+export const deleteBlock = (id) => api.delete(`/blocks/${id}`);
+
+// Horarios fijos
+export const getSchedules = () => api.get('/schedules');
+export const createSchedule = (data) => api.post('/schedules', data);
+export const updateSchedule = (id, data) => api.put(`/schedules/${id}`, data);
+export const deleteSchedule = (id) => api.delete(`/schedules/${id}`); 
