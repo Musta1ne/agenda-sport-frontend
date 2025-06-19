@@ -1,0 +1,273 @@
+/* Contenedor principal */
+div > h2 {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Mensaje de error */
+div > div[style*="color:red"] {
+  background: #fee2e2;
+  color: #dc2626;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+/* Formulario */
+form[style*="marginBottom:20"] {
+  background: var(--bg-form, #ffffff);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border: 1px solid var(--border-color, #e5e7eb);
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Selects del formulario */
+form select {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 8px;
+  background: var(--bg-input, #ffffff);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  min-width: 150px;
+  flex: 1;
+}
+
+form select:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Botones del formulario */
+form button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+
+form button[type="submit"] {
+  background: #2563eb;
+  color: white;
+}
+
+form button[type="submit"]:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+form button[type="submit"]:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+form button[type="button"] {
+  background: #f3f4f6;
+  color: #374151;
+  border: 1px solid #e5e7eb;
+}
+
+form button[type="button"]:hover {
+  background: #e5e7eb;
+  transform: translateY(-1px);
+}
+
+/* Mensaje de carga */
+p:has(+ table) {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-secondary, #6b7280);
+  font-size: 1.1rem;
+}
+
+/* Tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg-content, #ffffff);
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: 0.95rem;
+}
+
+/* Encabezados de tabla */
+table th {
+  background: var(--bg-table-header, #f8fafc);
+  color: var(--text-primary);
+  font-weight: 600;
+  text-align: left;
+  padding: 1rem;
+  border-bottom: 2px solid var(--border-color, #e5e7eb);
+}
+
+/* Celdas de tabla */
+table td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color, #e5e7eb);
+  color: var(--text-primary);
+}
+
+/* Filas de tabla */
+table tr:hover {
+  background: var(--bg-hover, #f8fafc);
+}
+
+/* Columna de estado */
+table td:nth-child(5) {
+  font-weight: 500;
+}
+
+/* Columna de acciones */
+table td:last-child {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Botones de acciones */
+table td:last-child button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+/* Botón editar */
+table td:last-child button:first-child {
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+table td:last-child button:first-child:hover {
+  background: #bfdbfe;
+  transform: translateY(-1px);
+}
+
+/* Botón eliminar */
+table td:last-child button:last-child {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+table td:last-child button:last-child:hover {
+  background: #fecaca;
+  transform: translateY(-1px);
+}
+
+/* Estado activo/inactivo */
+table td:nth-child(5):contains('Sí') {
+  color: #15803d;
+}
+
+table td:nth-child(5):contains('No') {
+  color: #dc2626;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  form[style*="marginBottom:20"] {
+    flex-direction: column;
+  }
+
+  form select {
+    width: 100%;
+  }
+
+  form button {
+    width: 100%;
+  }
+
+  table th,
+  table td {
+    padding: 0.75rem;
+  }
+
+  table td:last-child {
+    flex-direction: column;
+  }
+
+  table td:last-child button {
+    width: 100%;
+  }
+}
+
+/* Dark mode */
+body[data-theme='dark'] {
+  /* Fondo y bordes */
+  table {
+    background: var(--bg-content-dark, #1e293b);
+  }
+
+  table th {
+    background: var(--bg-table-header-dark, #0f172a);
+    border-bottom-color: var(--border-color-dark, #334155);
+  }
+
+  table td {
+    border-bottom-color: var(--border-color-dark, #334155);
+  }
+
+  /* Formulario */
+  form[style*="marginBottom:20"] {
+    background: var(--bg-form-dark, #1e293b);
+    border-color: var(--border-color-dark, #334155);
+  }
+
+  form select {
+    background: var(--bg-input-dark, #0f172a);
+    border-color: var(--border-color-dark, #334155);
+    color: var(--text-primary-dark, #e2e8f0);
+  }
+
+  /* Botones */
+  form button[type="button"] {
+    background: var(--bg-secondary-dark, #1e293b);
+    color: var(--text-primary-dark, #e2e8f0);
+    border-color: var(--border-color-dark, #334155);
+  }
+
+  form button[type="button"]:hover {
+    background: var(--bg-secondary-hover-dark, #334155);
+  }
+
+  /* Botones de acciones */
+  table td:last-child button:first-child {
+    background: #1e3a8a;
+    color: #93c5fd;
+  }
+
+  table td:last-child button:first-child:hover {
+    background: #1e40af;
+  }
+
+  table td:last-child button:last-child {
+    background: #7f1d1d;
+    color: #fca5a5;
+  }
+
+  table td:last-child button:last-child:hover {
+    background: #991b1b;
+  }
+
+  /* Estados */
+  table td:nth-child(5):contains('Sí') {
+    color: #4ade80;
+  }
+
+  table td:nth-child(5):contains('No') {
+    color: #f87171;
+  }
+} 

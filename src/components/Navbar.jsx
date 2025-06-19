@@ -15,36 +15,56 @@ export default function Navbar({ theme, toggleTheme }) {
           <MdSportsSoccer size={32} className="navbar-logo-icon" />
           <span className="navbar-logo-text">Reservas Canchas</span>
         </div>
-        {/* Menú hamburguesa solo visible en móvil */}
+
+        {/* Links de navegación para desktop */}
+        <div className="navbar-links">
+          <Link to="/" className={`pill-btn${location.pathname === '/' ? ' active' : ''}`}>
+            <MdHome size={20} /> Inicio
+          </Link>
+          <Link to="/courts" className={`pill-btn${location.pathname.startsWith('/courts') ? ' active' : ''}`}>
+            <MdSportsTennis size={20} /> Canchas
+          </Link>
+          <Link to="/bookings" className={`pill-btn${location.pathname.startsWith('/bookings') ? ' active' : ''}`}>
+            <MdCalendarMonth size={20} /> Reservas
+          </Link>
+          <button className="theme-circle desktop-only" onClick={toggleTheme} aria-label="Cambiar modo">
+            {theme === 'light' ? <MdDarkMode size={22} /> : <MdLightMode size={22} />}
+          </button>
+        </div>
+
+        {/* Botón hamburguesa para móvil */}
         <button className="navbar-hamburger" onClick={() => setMenuOpen(true)} aria-label="Abrir menú">
           <MdMenu size={28} />
         </button>
-        <div className="navbar-links">
-          <Link to="/" className={`pill-btn${location.pathname === '/' ? ' active' : ''}`}><MdHome size={20} /> Inicio</Link>
-          <Link to="/courts" className={`pill-btn${location.pathname.startsWith('/courts') ? ' active' : ''}`}><MdSportsTennis size={20} /> Canchas</Link>
-          <Link to="/bookings" className={`pill-btn${location.pathname.startsWith('/bookings') ? ' active' : ''}`}><MdCalendarMonth size={20} /> Reservas</Link>
-        </div>
-        <button className="theme-circle" onClick={toggleTheme} aria-label="Cambiar modo">
-          {theme === 'light' ? <MdDarkMode size={22} /> : <MdLightMode size={22} />}
-        </button>
       </div>
-      {/* Menú lateral/modal para móvil */}
+
+      {/* Menú móvil */}
       {menuOpen && (
         <div className="navbar-mobile-menu-bg" onClick={() => setMenuOpen(false)}>
-          <div className="navbar-mobile-menu animated" onClick={e => e.stopPropagation()}>
+          <div className="navbar-mobile-menu" onClick={e => e.stopPropagation()}>
             <button className="navbar-mobile-close" onClick={() => setMenuOpen(false)} aria-label="Cerrar menú">
               <MdClose size={28} />
             </button>
+            
             <div className="navbar-mobile-logo">
               <MdSportsSoccer size={28} className="navbar-logo-icon" />
               <span className="navbar-logo-text">Reservas Canchas</span>
             </div>
-            <Link to="/" className={`mobile-btn${location.pathname === '/' ? ' active' : ''}`} onClick={() => setMenuOpen(false)}><MdHome size={22} /> Inicio</Link>
-            <Link to="/courts" className={`mobile-btn${location.pathname.startsWith('/courts') ? ' active' : ''}`} onClick={() => setMenuOpen(false)}><MdSportsTennis size={22} /> Canchas</Link>
-            <Link to="/bookings" className={`mobile-btn${location.pathname.startsWith('/bookings') ? ' active' : ''}`} onClick={() => setMenuOpen(false)}><MdCalendarMonth size={22} /> Reservas</Link>
-            <button className="theme-circle mobile-theme" onClick={toggleTheme} aria-label="Cambiar modo">
-              {theme === 'light' ? <MdDarkMode size={22} /> : <MdLightMode size={22} />}
-            </button>
+
+            <div className="mobile-links">
+              <Link to="/" className={`mobile-btn${location.pathname === '/' ? ' active' : ''}`} onClick={() => setMenuOpen(false)}>
+                <MdHome size={22} /> Inicio
+              </Link>
+              <Link to="/courts" className={`mobile-btn${location.pathname.startsWith('/courts') ? ' active' : ''}`} onClick={() => setMenuOpen(false)}>
+                <MdSportsTennis size={22} /> Canchas
+              </Link>
+              <Link to="/bookings" className={`mobile-btn${location.pathname.startsWith('/bookings') ? ' active' : ''}`} onClick={() => setMenuOpen(false)}>
+                <MdCalendarMonth size={22} /> Reservas
+              </Link>
+              <button className="theme-circle mobile-theme" onClick={toggleTheme} aria-label="Cambiar modo">
+                {theme === 'light' ? <MdDarkMode size={22} /> : <MdLightMode size={22} />}
+              </button>
+            </div>
           </div>
         </div>
       )}
