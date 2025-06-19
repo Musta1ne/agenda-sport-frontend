@@ -1,6 +1,87 @@
+:root {
+  --ca-bg: #f8f9fa;
+  --ca-border: #ccc;
+  --ca-card-bg: #fff;
+  --ca-card-text: #1e293b;
+  --ca-btn-bg: #dc3545;
+  --ca-btn-hover-bg: #a71d2a;
+  --ca-success-bg: #d4edda;
+  --ca-success-text: #155724;
+  --ca-error-bg: #f8d7da;
+  --ca-error-text: #721c24;
+  --ca-block-bg: #e2e3e5;
+  --ca-block-text: #383d41;
+  --court-card-bg: #fff;
+  --court-card-bg-dark: #181c24;
+  --court-type: #2563eb;
+  --court-type-dark: #60a5fa;
+  --court-name: #181c24;
+  --court-name-dark: #fff;
+  --court-btn-bg: #2563eb;
+  --court-btn-bg-dark: #60a5fa;
+  --court-btn-hover-bg: #60a5fa;
+  --court-btn-hover-bg-dark: #2563eb;
+  --booking-bg: #fff;
+  --booking-bg-dark: #181c24;
+  --booking-title: #1e293b;
+  --booking-title-dark: #60a5fa;
+  --booking-btn-bg: #2563eb;
+  --booking-btn-bg-dark: #60a5fa;
+  --booking-btn-hover-bg: #1d4ed8;
+  --booking-btn-hover-bg-dark: #2563eb;
+  --status-active-bg: #f0fdf4;
+  --status-active-bg-dark: #1e293b;
+  --status-active-text: #059669;
+  --status-active-text-dark: #00e676;
+  --status-cancelled-bg: #fef2f2;
+  --status-cancelled-bg-dark: #2d1a1a;
+  --status-cancelled-text: #dc2626;
+  --status-cancelled-text-dark: #ff8a80;
+}
+body[data-theme='dark'] {
+  --ca-bg: #181c24;
+  --ca-border: #374151;
+  --ca-card-bg: #232a34;
+  --ca-card-text: #f6f8fa;
+  --ca-btn-bg: #b91c1c;
+  --ca-btn-hover-bg: #ff5252;
+  --ca-success-bg: #1e293b;
+  --ca-success-text: #00e676;
+  --ca-error-bg: #2d1a1a;
+  --ca-error-text: #ff8a80;
+  --ca-block-bg: #232a34;
+  --ca-block-text: #f6f8fa;
+  --court-card-bg: #232a34;
+  --court-card-bg-dark: #181c24;
+  --court-type: #60a5fa;
+  --court-type-dark: #2563eb;
+  --court-name: #fff;
+  --court-name-dark: #181c24;
+  --court-btn-bg: #60a5fa;
+  --court-btn-bg-dark: #2563eb;
+  --court-btn-hover-bg: #2563eb;
+  --court-btn-hover-bg-dark: #60a5fa;
+  --booking-bg: #181c24;
+  --booking-bg-dark: #fff;
+  --booking-title: #60a5fa;
+  --booking-title-dark: #1e293b;
+  --booking-btn-bg: #60a5fa;
+  --booking-btn-bg-dark: #2563eb;
+  --booking-btn-hover-bg: #2563eb;
+  --booking-btn-hover-bg-dark: #60a5fa;
+  --status-active-bg: #1e293b;
+  --status-active-bg-dark: #f0fdf4;
+  --status-active-text: #00e676;
+  --status-active-text-dark: #059669;
+  --status-cancelled-bg: #2d1a1a;
+  --status-cancelled-bg-dark: #fef2f2;
+  --status-cancelled-text: #ff8a80;
+  --status-cancelled-text-dark: #dc2626;
+}
+
 .court-availability {
-  background: #f8f9fa;
-  border: 1px solid #ccc;
+  background: var(--ca-bg);
+  border: 1px solid var(--ca-border);
   padding: 1rem;
   margin-top: 1rem;
   border-radius: 8px;
@@ -10,7 +91,7 @@
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
-  background: #dc3545;
+  background: var(--ca-btn-bg);
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -18,7 +99,7 @@
   cursor: pointer;
 }
 .court-availability .close-btn:hover {
-  background: #a71d2a;
+  background: var(--ca-btn-hover-bg);
 }
 .court-availability ul {
   margin: 0.5rem 0 1rem 1rem;
@@ -37,19 +118,19 @@
   text-align: center;
 }
 .hora.disponible {
-  background: #d4edda;
-  color: #155724;
+  background: var(--ca-success-bg);
+  color: var(--ca-success-text);
   border: 1px solid #b7e4c7;
 }
 .hora.reservado {
-  background: #f8d7da;
-  color: #721c24;
+  background: var(--ca-error-bg);
+  color: var(--ca-error-text);
   border: 1px solid #f5c6cb;
 }
 .hora.bloqueado {
-  background: #e2e3e5;
-  color: #383d41;
-  border: 1px solid #d6d8db;
+  background: var(--ca-block-bg);
+  color: var(--ca-block-text);
+  border: 1px solid var(--ca-border);
 }
 
 /* Overlay del modal */
@@ -353,4 +434,114 @@ body[data-theme='dark'] .ca-hora.bloqueado {
   font-size: 0.85rem;
   font-weight: 500;
   text-transform: uppercase;
+}
+
+.court-card {
+  background: var(--court-card-bg);
+  border-radius: 18px;
+  box-shadow: 0 4px 24px #b3cfff22;
+  width: 320px;
+  min-height: 340px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  transition: transform 0.25s, box-shadow 0.25s;
+  cursor: pointer;
+}
+body[data-theme='dark'] .court-card {
+  background: var(--court-card-bg-dark);
+  box-shadow: 0 4px 24px #10192b55;
+}
+.court-type {
+  color: var(--court-type);
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+}
+body[data-theme='dark'] .court-type {
+  color: var(--court-type-dark);
+}
+.court-name {
+  color: var(--court-name);
+  font-weight: 600;
+  font-size: 1.08rem;
+  margin-bottom: 0.5rem;
+}
+body[data-theme='dark'] .court-name {
+  color: var(--court-name-dark);
+}
+.court-btn {
+  margin-top: 1.1rem;
+  background: var(--court-btn-bg);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.7rem 1.7rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px #60a5fa22;
+  transition: background 0.2s, color 0.2s, transform 0.1s;
+}
+.court-btn:hover {
+  background: var(--court-btn-hover-bg);
+  color: #fff;
+  transform: scale(1.06);
+}
+body[data-theme='dark'] .court-btn {
+  background: var(--court-btn-bg-dark);
+  color: #181c24;
+}
+body[data-theme='dark'] .court-btn:hover {
+  background: var(--court-btn-hover-bg-dark);
+  color: #fff;
+}
+
+.booking-list {
+  background: var(--booking-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  color: var(--booking-title);
+}
+body[data-theme='dark'] .booking-list {
+  background: var(--booking-bg-dark);
+  color: var(--booking-title-dark);
+}
+.booking-title {
+  color: var(--booking-title);
+}
+body[data-theme='dark'] .booking-title {
+  color: var(--booking-title-dark);
+}
+.refresh-btn {
+  background: var(--booking-btn-bg);
+  color: white;
+}
+.refresh-btn:hover {
+  background: var(--booking-btn-hover-bg);
+}
+body[data-theme='dark'] .refresh-btn {
+  background: var(--booking-btn-bg-dark);
+  color: #181c24;
+}
+body[data-theme='dark'] .refresh-btn:hover {
+  background: var(--booking-btn-hover-bg-dark);
+  color: #fff;
+}
+.status-active {
+  background: var(--status-active-bg);
+  color: var(--status-active-text);
+}
+body[data-theme='dark'] .status-active {
+  background: var(--status-active-bg-dark);
+  color: var(--status-active-text-dark);
+}
+.status-cancelled {
+  background: var(--status-cancelled-bg);
+  color: var(--status-cancelled-text);
+}
+body[data-theme='dark'] .status-cancelled {
+  background: var(--status-cancelled-bg-dark);
+  color: var(--status-cancelled-text-dark);
 } 
