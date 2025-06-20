@@ -393,6 +393,39 @@ body[data-theme='dark'] .theme-circle.mobile-theme {
   background: var(--mobile-btn-bg-dark);
   border-color: var(--navbar-border-dark);
 }
+.pill-btn:hover {
+  transform: translateY(-2px);
+  transition: transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-btn:hover {
+  background-color: var(--hover-color);
+  transition: background-color 0.2s ease;
+}
+.theme-circle.mobile-theme {
+  margin: 1.25rem;
+  align-self: center;
+  background: var(--mobile-btn-bg-light);
+  border: 1px solid var(--navbar-border-light);
+}
+
+body[data-theme='dark'] .mobile-btn {
+  background: var(--mobile-btn-bg-dark);
+  color: var(--navbar-text-dark);
+  border-color: var(--navbar-border-dark);
+}
+body[data-theme='dark'] .mobile-btn:hover,
+body[data-theme='dark'] .mobile-btn.active {
+  background: var(--navbar-pill-active-dark);
+  color: #fff;
+  border-color: var(--navbar-pill-active-light);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+body[data-theme='dark'] .theme-circle.mobile-theme {
+  background: var(--mobile-btn-bg-dark);
+  border-color: var(--navbar-border-dark);
+}
 
 /* Mejor contraste de contenedores en modo claro y oscuro */
 .court-card, .booking-form, .booking-list-card, .court-modal, .court-availability-modal {
@@ -422,4 +455,4 @@ body[data-theme='dark'] .court-card, body[data-theme='dark'] .booking-form, body
   .theme-circle.desktop-only {
     display: none;
   }
-} 
+}

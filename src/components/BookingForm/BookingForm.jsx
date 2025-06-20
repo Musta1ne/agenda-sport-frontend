@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getCourts, createBooking, getCourtAvailability } from '../../services/api';
-import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 import { MdSportsSoccer, MdAttachMoney, MdDateRange, MdAccessTime, MdComment, MdPayment } from 'react-icons/md';
 import styles from './BookingForm.module.css';
 
@@ -92,7 +92,7 @@ export default function BookingForm() {
     return horario ? horario.hora_fin : '';
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     if (!form.nombre_usuario.trim()) {
@@ -115,25 +115,30 @@ export default function BookingForm() {
         id_cancha: parseInt(form.id_cancha)
       });
       
-      toast.success('Reserva creada con éxito');
-      setForm({ 
-        id_cancha: '', 
-        fecha: '', 
-        hora_inicio: '', 
-        nombre_usuario: '', 
-        telefono: '', 
-        comentario: '', 
-        metodo_pago: 'efectivo' 
+      toast.success('¡Cancha reservada con éxito!', {
+        style: {
+          background: 'var(--primary-color)',
+          color: '#fff',
+          padding: '16px',
+          borderRadius: '10px',
+        },
+        iconTheme: {
+          primary: '#fff',
+          secondary: 'var(--primary-color)',
+        },
+        duration: 4000,
       });
-      setPrecio('');
-      setNombreCancha('');
-      setTipoCancha('');
-    } catch (err) {
-      console.error('Error creating booking:', err);
-      const errorMessage = err.response?.data?.error || 'Error al crear la reserva';
-      toast.error(errorMessage);
+      
+    } catch (error) {
+      toast.error('No se pudo completar la reserva', {
+        style: {
+          background: '#ff4b4b',
+          color: '#fff',
+          padding: '16px',
+          borderRadius: '10px',
+        },
+      });
     }
-    setLoading(false);
   };
 
   if (courtsLoading) {
@@ -251,4 +256,4 @@ export default function BookingForm() {
       </form>
     </div>
   );
-} 
+}

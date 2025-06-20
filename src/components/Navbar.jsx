@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { MdHome, MdSportsTennis, MdCalendarMonth, MdDarkMode, MdLightMode, MdMenu, MdClose, MdSportsSoccer } from 'react-icons/md';
 import './Navbar.css';
@@ -6,14 +6,19 @@ import './Navbar.css';
 export default function Navbar({ theme, toggleTheme }) {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
+  useEffect(() => {
+    setIsLoading(true);
+    const timer = setTimeout(() => setIsLoading(false), 300);
+    return () => clearTimeout(timer);
+  }, [location.pathname]);
   return (
-    <nav className="navbar-wrapper">
+    <nav className="navbar-wrapper" role="navigation" aria-label="Navegación principal">
       <div className="navbar-content">
-        {/* Logo y nombre */}
-        <div className="navbar-logo">
+        <div className="navbar-logo" role="banner">
           <MdSportsSoccer size={32} className="navbar-logo-icon" />
-          <span className="navbar-logo-text">Reservas Canchas</span>
+          <span className="navbar-logo-text">Agenda Sport</span>
         </div>
 
         {/* Links de navegación para desktop */}
@@ -40,15 +45,19 @@ export default function Navbar({ theme, toggleTheme }) {
 
       {/* Menú móvil */}
       {menuOpen && (
-        <div className="navbar-mobile-menu-bg" onClick={() => setMenuOpen(false)}>
-          <div className="navbar-mobile-menu" onClick={e => e.stopPropagation()}>
+        <div className="navbar-mobile-menu-bg" 
+          onClick={() => setMenuOpen(false)}
+          style={{ animation: 'fadeIn 0.3s ease-in-out' }}>
+          <div className="navbar-mobile-menu" 
+            onClick={e => e.stopPropagation()}
+            style={{ animation: 'slideIn 0.3s ease-in-out' }}>
             <button className="navbar-mobile-close" onClick={() => setMenuOpen(false)} aria-label="Cerrar menú">
               <MdClose size={28} />
             </button>
             
             <div className="navbar-mobile-logo">
               <MdSportsSoccer size={28} className="navbar-logo-icon" />
-              <span className="navbar-logo-text">Reservas Canchas</span>
+              <span className="navbar-logo-text">Agenda Sport</span>
             </div>
 
             <div className="mobile-links">
@@ -70,4 +79,4 @@ export default function Navbar({ theme, toggleTheme }) {
       )}
     </nav>
   );
-} 
+}
