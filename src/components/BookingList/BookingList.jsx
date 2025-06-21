@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { getAllBookings, getCourts, deleteBooking } from '../../services/api';
+import React, { useEffect } from 'react';
+import { useAppContext } from '../../context/AppContext';
 import './BookingList.css';
 import { toast } from 'react-toastify';
 import { MdRefresh, MdInfo } from 'react-icons/md';
@@ -14,29 +14,21 @@ function puedeCancelar(fecha, hora_inicio, estado) {
 }
 
 export default function BookingList() {
-  const [bookings, setBookings] = useState([]);
-  const [courts, setCourts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { 
+    bookings, 
+    courts, 
+    loading, 
+    errors, 
+    fetchBookings, 
+    fetchCourts 
+  } = useAppContext();
 
   const cargar = async () => {
     try {
-      setLoading(true);
-      setError(null);
-      
-      const [bookingsRes, courtsRes] = await Promise.all([
-        getAllBookings(),
-        getCourts()
-      ]);
-      
-      setBookings(bookingsRes.data || []);
-      setCourts(courtsRes.data || []);
+      await Promise.all([fetchBookings(), fetchCourts()]);
     } catch (err) {
       console.error('Error loading data:', err);
-      setError('Error al cargar las reservas');
       toast.error('Error al cargar los datos');
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -90,7 +82,7 @@ export default function BookingList() {
     return dateB - dateA;
   });
 
-  if (loading) {
+  if (loading.bookings) {
     return (
       <div className="booking-list">
         <div className="loading-message">
@@ -101,11 +93,11 @@ export default function BookingList() {
     );
   }
 
-  if (error) {
+  if (errors.bookings) {
     return (
       <div className="booking-list">
         <div className="error-message">
-          <p>{error}</p>
+          <p>{errors.bookings}</p>
           <button onClick={cargar} className="retry-btn">
             <MdRefresh /> Reintentar
           </button>

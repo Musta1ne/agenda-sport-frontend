@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { getCourts, createBooking, getCourtAvailability } from '../../services/api';
+import { useAppContext } from '../../context/AppContext';
+import { getCourtAvailability } from '../../services/api';
 import { toast } from 'react-toastify';
 import { MdSportsSoccer, MdAttachMoney, MdDateRange, MdAccessTime, MdComment, MdPayment } from 'react-icons/md';
 import styles from './BookingForm.module.css';
 
 export default function BookingForm() {
-  const [courts, setCourts] = useState([]);
+  const { 
+    courts, 
+    loading, 
+    createBooking, 
+    fetchCourts 
+  } = useAppContext();
+
   const [form, setForm] = useState({
     id_cancha: '',
     fecha: '',
@@ -15,28 +22,13 @@ export default function BookingForm() {
     comentario: '',
     metodo_pago: 'efectivo',
   });
-  const [loading, setLoading] = useState(false);
-  const [courtsLoading, setCourtsLoading] = useState(true);
+  const [loadingSubmit, setLoadingSubmit] = useState(false);
   const [horasDisponibles, setHorasDisponibles] = useState([]);
   const [precio, setPrecio] = useState('');
   const [nombreCancha, setNombreCancha] = useState('');
   const [tipoCancha, setTipoCancha] = useState('');
 
   useEffect(() => {
-    const fetchCourts = async () => {
-      try {
-        setCourtsLoading(true);
-        const res = await getCourts();
-        setCourts(res.data || []);
-      } catch (error) {
-        console.error('Error fetching courts:', error);
-        toast.error('Error al cargar las canchas');
-        setCourts([]);
-      } finally {
-        setCourtsLoading(false);
-      }
-    };
-
     fetchCourts();
   }, []);
 
@@ -57,28 +49,24 @@ export default function BookingForm() {
     if (form.id_cancha && form.fecha) {
       const fetchAvailability = async () => {
         try {
-          const res = await getCourtAvailability(form.id_cancha);
-          const horarios = res.data.horarios || [];
+          const res = await getCourtAvailability(form.id_cancha, form.fecha);
+          
+          const availableSlots = res.data.availability || [];
 
-          // Filtrar horarios por fecha (si aplica)
-          const horariosFiltrados = horarios.filter(horario => {
-            // Si el horario es para todos los días, mostrarlo siempre
-            if (horario.dia_semana === 'todos') return true;
-            // Aquí podrías agregar lógica para días específicos si es necesario
-            return true;
-          });
-
-          setHorasDisponibles(horariosFiltrados);
+          setHorasDisponibles(availableSlots);
         } catch (error) {
           console.error('Error fetching availability:', error);
+          toast.error('No se pudo cargar la disponibilidad.');
           setHorasDisponibles([]);
+        } finally {
+          setForm(f => ({ ...f, hora_inicio: '' }));
         }
       };
       fetchAvailability();
     } else {
       setHorasDisponibles([]);
+      setForm(f => ({ ...f, hora_inicio: '' }));
     }
-    setForm(f => ({ ...f, hora_inicio: '' }));
   }, [form.id_cancha, form.fecha]);
 
   const handleChange = e => {
@@ -105,7 +93,7 @@ export default function BookingForm() {
       return;
     }
 
-    setLoading(true);
+    setLoadingSubmit(true);
     try {
       const hora_fin = calcularHoraFin(form.hora_inicio);
       
@@ -133,10 +121,10 @@ export default function BookingForm() {
       const errorMessage = err.response?.data?.error || 'Error al crear la reserva';
       toast.error(errorMessage);
     }
-    setLoading(false);
+    setLoadingSubmit(false);
   };
 
-  if (courtsLoading) {
+  if (loading.courts) {
     return (
       <div className={styles.formCard}>
         <div className={styles.loadingMessage}>Cargando canchas...</div>
@@ -245,8 +233,8 @@ export default function BookingForm() {
             <b>Banco:</b> Mercado Pago
           </div>
         )}
-        <button className={styles.button} type="submit" disabled={loading}>
-          {loading ? 'Guardando...' : 'Reservar ahora'}
+        <button className={styles.button} type="submit" disabled={loadingSubmit}>
+          {loadingSubmit ? 'Guardando...' : 'Reservar ahora'}
         </button>
       </form>
     </div>

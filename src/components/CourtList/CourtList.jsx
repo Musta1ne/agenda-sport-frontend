@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { getCourts } from '../../services/api';
+import React from 'react';
+import { useAppContext } from '../../context/AppContext';
 import CourtAvailability from '../CourtAvailability/CourtAvailability';
 import { FaFutbol, FaTableTennis } from 'react-icons/fa';
 import './CourtList.css';
@@ -11,37 +11,16 @@ const canchaIcons = {
 };
 
 export default function CourtList() {
-  const [courts, setCourts] = useState([]);
-  const [selectedCourt, setSelectedCourt] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const { 
+    courts, 
+    loading, 
+    errors, 
+    ui,
+    setSelectedCourt,
+    setShowAvailabilityModal 
+  } = useAppContext();
 
-  useEffect(() => {
-    const fetchCourts = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        const res = await getCourts();
-        
-        if (Array.isArray(res.data)) {
-          setCourts(res.data);
-        } else {
-          setCourts([]);
-          setError('Formato de datos inesperado');
-        }
-      } catch (err) {
-        console.error('Error fetching courts:', err);
-        setCourts([]);
-        setError('No se pudieron cargar las canchas. Verifica tu conexión.');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchCourts();
-  }, []);
-
-  if (loading) {
+  if (loading.courts) {
     return (
       <div className="court-list-grid">
         <div className="loading-message">Cargando canchas...</div>
@@ -49,11 +28,11 @@ export default function CourtList() {
     );
   }
 
-  if (error) {
+  if (errors.courts) {
     return (
       <div className="court-list-grid">
         <div className="court-error">
-          <p>{error}</p>
+          <p>{errors.courts}</p>
           <button onClick={() => window.location.reload()} className="retry-btn">
             Reintentar
           </button>
@@ -90,7 +69,10 @@ export default function CourtList() {
               <div className="court-price">${court.precio?.toLocaleString() || 'N/A'}</div>
               <button 
                 className="court-btn" 
-                onClick={() => setSelectedCourt(court.id)}
+                onClick={() => {
+                  setSelectedCourt(court);
+                  setShowAvailabilityModal(true);
+                }}
               >
                 Ver disponibilidad
               </button>
@@ -98,10 +80,13 @@ export default function CourtList() {
           </div>
         ))
       )}
-      {selectedCourt && (
+      {ui.showAvailabilityModal && ui.selectedCourt && (
         <CourtAvailability 
-          id={selectedCourt} 
-          onClose={() => setSelectedCourt(null)} 
+          id={ui.selectedCourt.id} 
+          onClose={() => {
+            setSelectedCourt(null);
+            setShowAvailabilityModal(false);
+          }} 
         />
       )}
     </div>

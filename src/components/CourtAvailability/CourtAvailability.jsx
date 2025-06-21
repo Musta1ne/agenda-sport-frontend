@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getCourtAvailability } from '../../services/api';
-import { MdClose, MdAccessTime, MdCheckCircle, MdCancel, MdBlock } from 'react-icons/md';
+import { MdClose, MdAccessTime, MdCheckCircle, MdCancel } from 'react-icons/md';
 import './CourtAvailability.css';
 
 export default function CourtAvailability({ id, onClose }) {
@@ -50,7 +50,7 @@ export default function CourtAvailability({ id, onClose }) {
     );
   }
 
-  if (!data || !data.horarios) {
+  if (!data || !data.availability) {
     return (
       <div className="ca-overlay">
         <div className="ca-modal">
@@ -63,15 +63,12 @@ export default function CourtAvailability({ id, onClose }) {
     );
   }
 
-  const { cancha, horarios, total_horarios, disponibles, reservados, bloqueados } = data;
+  const { court, availability } = data;
 
-  // Filtrar horarios por fecha (si aplica)
-  const horariosFiltrados = horarios.filter(horario => {
-    // Si el horario es para todos los días, mostrarlo siempre
-    if (horario.dia_semana === 'todos') return true;
-    // Aquí podrías agregar lógica para días específicos si es necesario
-    return true;
-  });
+  // Calcular estadísticas
+  const total_horarios = availability.length;
+  const disponibles = availability.filter(h => h.estado === 'disponible').length;
+  const reservados = availability.filter(h => h.estado === 'reservado').length;
 
   const getEstadoIcon = (estado) => {
     switch (estado) {
@@ -79,8 +76,6 @@ export default function CourtAvailability({ id, onClose }) {
         return <MdCheckCircle className="ca-icon-disponible" />;
       case 'reservado':
         return <MdCancel className="ca-icon-reservado" />;
-      case 'bloqueado':
-        return <MdBlock className="ca-icon-bloqueado" />;
       default:
         return null;
     }
@@ -92,8 +87,6 @@ export default function CourtAvailability({ id, onClose }) {
         return 'disponible';
       case 'reservado':
         return 'reservado';
-      case 'bloqueado':
-        return 'bloqueado';
       default:
         return '';
     }
@@ -108,17 +101,17 @@ export default function CourtAvailability({ id, onClose }) {
         
         <h3 className="ca-title">
           <MdAccessTime className="ca-title-icon" size={22} /> 
-          Disponibilidad - {cancha?.nombre || 'Cancha'}
+          Disponibilidad - {court?.nombre || 'Cancha'}
         </h3>
 
         <div className="ca-info">
           <div className="ca-info-item">
             <span className="ca-info-label">Tipo:</span>
-            <span className="ca-info-value">{cancha?.tipo}</span>
+            <span className="ca-info-value">{court?.tipo}</span>
           </div>
           <div className="ca-info-item">
             <span className="ca-info-label">Precio:</span>
-            <span className="ca-info-value">${cancha?.precio?.toLocaleString()}</span>
+            <span className="ca-info-value">${court?.precio?.toLocaleString()}</span>
           </div>
         </div>
 
@@ -135,10 +128,6 @@ export default function CourtAvailability({ id, onClose }) {
             <span className="ca-stat-number">{reservados}</span>
             <span className="ca-stat-label">Reservados</span>
           </div>
-          <div className="ca-stat bloqueado">
-            <span className="ca-stat-number">{bloqueados}</span>
-            <span className="ca-stat-label">Bloqueados</span>
-          </div>
         </div>
 
         <label className="ca-label">
@@ -152,9 +141,9 @@ export default function CourtAvailability({ id, onClose }) {
         </label>
 
         <div className="ca-horas-grid">
-          {horariosFiltrados.map((horario, index) => (
+          {availability.map((horario, index) => (
             <div 
-              key={`${horario.id}-${horario.hora_inicio}`} 
+              key={`${index}-${horario.hora_inicio}`} 
               className={`ca-hora ${getEstadoClass(horario.estado)}`}
             >
               <div className="ca-hora-header">
@@ -166,23 +155,17 @@ export default function CourtAvailability({ id, onClose }) {
               <div className="ca-hora-estado">
                 {horario.estado === 'disponible' && 'Disponible'}
                 {horario.estado === 'reservado' && 'Reservado'}
-                {horario.estado === 'bloqueado' && 'Bloqueado'}
               </div>
-              {horario.reserva && (
+              {horario.details && horario.estado === 'reservado' && (
                 <div className="ca-hora-detalle">
-                  Reservado por: {horario.reserva.nombre_usuario}
-                </div>
-              )}
-              {horario.bloqueo && (
-                <div className="ca-hora-detalle">
-                  Bloqueado: {horario.bloqueo.motivo}
+                  Reservado por: {horario.details.nombre_usuario}
                 </div>
               )}
             </div>
           ))}
         </div>
 
-        {horariosFiltrados.length === 0 && (
+        {availability.length === 0 && (
           <div className="ca-empty">
             No hay horarios disponibles para esta cancha
           </div>

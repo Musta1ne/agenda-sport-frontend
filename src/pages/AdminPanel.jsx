@@ -1,24 +1,75 @@
 import React, { useState } from 'react';
 import CourtAdmin from '../components/Admin/CourtAdmin';
+import SportAdmin from '../components/Admin/SportAdmin';
 import BookingAdmin from '../components/Admin/BookingAdmin';
 import ScheduleAdmin from '../components/Admin/ScheduleAdmin';
 import './AdminPanel.css';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AdminPanel = () => {
-  const [tab, setTab] = useState('courts');
+  const [activeTab, setActiveTab] = useState('canchas');
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'canchas':
+        return <CourtAdmin />;
+      case 'deportes':
+        return <SportAdmin />;
+      case 'reservas':
+        return <BookingAdmin />;
+      case 'horarios':
+        return <ScheduleAdmin />;
+      default:
+        return <CourtAdmin />;
+    }
+  };
 
   return (
     <div className="admin-panel">
-      <h1>Panel de Administración</h1>
+      <ToastContainer 
+        position="top-right"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
+      <div className="admin-header">
+        <h1>Panel de Administración</h1>
+      </div>
       <div className="admin-tabs">
-        <button className={tab === 'courts' ? 'active' : ''} onClick={() => setTab('courts')}>Canchas</button>
-        <button className={tab === 'schedules' ? 'active' : ''} onClick={() => setTab('schedules')}>Horarios Fijos</button>
-        <button className={tab === 'bookings' ? 'active' : ''} onClick={() => setTab('bookings')}>Reservas</button>
+        <button 
+          className={`tab-btn ${activeTab === 'canchas' ? 'active' : ''}`} 
+          onClick={() => setActiveTab('canchas')}
+        >
+          Canchas
+        </button>
+        <button 
+          className={`tab-btn ${activeTab === 'deportes' ? 'active' : ''}`} 
+          onClick={() => setActiveTab('deportes')}
+        >
+          Deportes
+        </button>
+        <button 
+          className={`tab-btn ${activeTab === 'reservas' ? 'active' : ''}`} 
+          onClick={() => setActiveTab('reservas')}
+        >
+          Reservas
+        </button>
+        <button 
+          className={`tab-btn ${activeTab === 'horarios' ? 'active' : ''}`} 
+          onClick={() => setActiveTab('horarios')}
+        >
+          Horarios Fijos
+        </button>
       </div>
       <div className="admin-content">
-        {tab === 'courts' && <CourtAdmin />}
-        {tab === 'schedules' && <ScheduleAdmin />}
-        {tab === 'bookings' && <BookingAdmin />}
+        {renderContent()}
       </div>
     </div>
   );
