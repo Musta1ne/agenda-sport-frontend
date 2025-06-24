@@ -53,4 +53,4 @@ Agenda Sport es una aplicación web moderna para la gestión y reserva de cancha
 Este proyecto fue realizado como parte de una experiencia real de desarrollo de software, aplicando buenas prácticas de diseño, arquitectura y trabajo en equipo.
 
 ## Deploy
-https//reservas-frontend-tawny.vercel.app
+https://reservas-frontend-tawny.vercel.app
