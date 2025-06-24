@@ -137,7 +137,7 @@ export default function BookingForm() {
       <form className={styles.formWrap} onSubmit={handleSubmit}>
         <h1 className={styles.formTitle}>
           <MdSportsSoccer style={{ color: 'var(--accent2)', marginRight: 10, verticalAlign: 'middle' }} />
-          Reservá tu cancha
+          Agenda Sport
         </h1>
         {precio && nombreCancha && (
           <div className={styles.price}>

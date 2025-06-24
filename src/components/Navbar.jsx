@@ -13,7 +13,7 @@ export default function Navbar({ theme, toggleTheme }) {
         {/* Logo y nombre */}
         <div className="navbar-logo">
           <MdSportsSoccer size={32} className="navbar-logo-icon" />
-          <span className="navbar-logo-text">Reservas Canchas</span>
+          <span className="navbar-logo-text">Agenda Sport</span>
         </div>
 
         {/* Links de navegación para desktop */}
@@ -48,7 +48,7 @@ export default function Navbar({ theme, toggleTheme }) {
             
             <div className="navbar-mobile-logo">
               <MdSportsSoccer size={28} className="navbar-logo-icon" />
-              <span className="navbar-logo-text">Reservas Canchas</span>
+              <span className="navbar-logo-text">Agenda Sport</span>
             </div>
 
             <div className="mobile-links">

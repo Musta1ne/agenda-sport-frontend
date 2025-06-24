@@ -54,7 +54,7 @@ export default function Home() {
       <section className="home2-hero">
         <div className="home2-hero-bg" />
         <div className="home2-hero-content">
-          <h1>Reservá tu cancha <span className="home2-highlight">online</span> en segundos</h1>
+          <h1>Agenda Sport</h1>
           <p>Fútbol 5, Fútbol 7 y Pádel. Consultá disponibilidad, reservá y jugá sin complicaciones.</p>
           <button className="home2-cta" onClick={() => navigate('/courts')}>
             Ver canchas disponibles <FaArrowRight style={{ marginLeft: 8 }} />
